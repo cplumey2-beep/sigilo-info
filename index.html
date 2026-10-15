@@ -1,0 +1,387 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Sigilo frente a Signal, WhatsApp y Telegram</title>
+<meta name="description" content="Por qué Sigilo protege mejor tus mensajes: comparativa frente a Signal, WhatsApp y Telegram, las llaves cuánticas explicadas fácil y cómo se cifra cada mensaje.">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Sigilo">
+<meta property="og:title" content="Sigilo frente a Signal, WhatsApp y Telegram">
+<meta property="og:description" content="Para el mundo, un sobre cerrado. Para tu contacto, tu mensaje. Mensajería cifrada con protección cuántica ML-KEM-1024.">
+<meta property="og:url" content="https://cplumey2-beep.github.io/sigilo-info/">
+<meta property="og:image" content="https://cplumey2-beep.github.io/sigilo-info/icon-512.png">
+<meta property="og:image:width" content="512">
+<meta property="og:image:height" content="512">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-180.png">
+<!-- Página de presentación de Sigilo (la comparativa). Vive aparte de la app (otro dominio), para que un teléfono con
+     Sigilo instalado no intente abrirla dentro de la app. No carga nada de fuera: ni fuentes, ni estadísticas, ni nada
+     de terceros. -->
+<style>
+html { -webkit-text-size-adjust: 100%; }
+:root { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img, svg { max-width: 100%; }
+</style>
+<style>
+/* Layout: una sola columna de lectura, con un sello de lacre como marca; la tabla es la pieza central */
+:root {
+  --bg: #f4f6f9;
+  --paper: #ffffff;
+  --ink: #16202e;
+  --muted: #566274;
+  --line: #d9dfe8;
+  --wax: #0e7490;
+  --wax-soft: #e0f5f9;
+  --cta: #0b5f75;
+  --glow: rgba(8, 145, 178, 0.45);
+  --sigilo: #eaf1fb;
+  --yes: #1f7a4d;
+  --warn: #9a6700;
+  --no: #b42318;
+  --code-bg: #eef2f7;
+  --display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --body: 'Source Sans 3', 'Segoe UI', system-ui, sans-serif;
+  --mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0e141d; --paper: #151d29; --ink: #e7ecf3; --muted: #9aa7b8; --line: #263244;
+    --wax: #22d3ee; --wax-soft: #10313b; --cta: #0e7490; --glow: rgba(34, 211, 238, 0.55); --sigilo: #16253a; --yes: #4cc38a; --warn: #e3b341; --no: #f47067; --code-bg: #1b2533;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0e141d; --paper: #151d29; --ink: #e7ecf3; --muted: #9aa7b8; --line: #263244;
+  --wax: #22d3ee; --wax-soft: #10313b; --cta: #0e7490; --glow: rgba(34, 211, 238, 0.55); --sigilo: #16253a; --yes: #4cc38a; --warn: #e3b341; --no: #f47067; --code-bg: #1b2533;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+.wrap { max-width: 860px; margin: 0 auto; padding-inline: 18px; padding-block: 40px 64px; display: grid; gap: 44px; }
+h1, h2, h3 { font-family: var(--display); line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(2.1rem, 6vw, 3.2rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.45rem, 3.6vw, 1.9rem); font-weight: 700; }
+h3 { font-size: 1.12rem; font-weight: 700; }
+p { margin: 0; max-width: 65ch; }
+section { display: grid; gap: 16px; min-width: 0; }
+.eyebrow { font-family: var(--mono); font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--wax); }
+
+/* Portada */
+.hero { display: grid; grid-template-columns: auto 1fr; gap: 24px; align-items: center; }
+.logo { width: 104px; height: 104px; filter: drop-shadow(0 0 14px var(--glow)); }
+.motto { display: grid; gap: 12px; justify-items: center; text-align: center; padding-block: 8px; }
+.motto .line { font-family: var(--display); font-style: italic; font-weight: 700; font-size: clamp(1.15rem, 3.4vw, 1.4rem); color: var(--wax); }
+.motto p { max-width: 52ch; }
+.tagline { border-block: 1px solid var(--line); padding-block: 22px; text-align: center; display: grid; gap: 4px; }
+.tagline p { max-width: none; font-family: var(--display); font-size: clamp(1.1rem, 3.2vw, 1.35rem); line-height: 1.35; }
+.tagline p + p { font-weight: 800; }
+.hero-text { display: grid; gap: 12px; min-width: 0; }
+.slogan { font-family: var(--display); font-size: 1.2rem; font-weight: 500; color: var(--muted); }
+.lead { font-size: 1.12rem; }
+
+/* Cómo lo ve el servidor */
+.envelope { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.envelope > div { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 16px; display: grid; gap: 8px; min-width: 0; }
+.envelope small { color: var(--muted); font-size: 0.85rem; }
+.raw { font-family: var(--mono); font-size: 0.82rem; word-break: break-all; color: var(--muted); }
+.clear { font-size: 1.05rem; font-weight: 600; }
+
+/* La tabla */
+.table-box { overflow-x: auto; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; }
+table { border-collapse: collapse; width: 100%; min-width: 720px; font-size: 0.97rem; }
+th, td { padding: 12px 14px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+thead th { font-family: var(--display); font-size: 1rem; background: var(--paper); position: sticky; top: 0; }
+tbody tr:last-child th, tbody tr:last-child td { border-bottom: 0; }
+td { width: 15%; }
+th[scope="row"] { font-weight: 600; width: 40%; }
+.us { background: var(--sigilo); }
+.mark { display: inline-flex; gap: 6px; align-items: baseline; font-weight: 700; }
+.mark small { font-weight: 400; color: var(--muted); font-size: 0.82rem; display: block; }
+.y { color: var(--yes); } .w { color: var(--warn); } .n { color: var(--no); }
+.pro { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--wax); background: var(--wax-soft); border-radius: 4px; padding: 1px 6px; margin-left: 6px; font-weight: 600; vertical-align: 2px; }
+.note { font-size: 0.88rem; color: var(--muted); }
+
+/* Las llaves, explicadas */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
+.card { background: var(--paper); border: 1px solid var(--line); border-radius: 10px; padding: 18px; display: grid; gap: 8px; align-content: start; min-width: 0; }
+.spec { font-family: var(--mono); font-size: 0.8rem; color: var(--muted); }
+.compare-bar { display: grid; gap: 10px; }
+.bar { display: grid; grid-template-columns: 9.5rem 1fr; gap: 12px; align-items: center; }
+.bar b { font-size: 0.95rem; }
+.bar .track { height: 14px; background: var(--code-bg); border-radius: 7px; overflow: hidden; }
+.bar .fill { height: 100%; background: var(--muted); border-radius: 7px; }
+.bar.us-bar .fill { background: var(--wax); }
+.bar span.val { grid-column: 2; font-family: var(--mono); font-size: 0.78rem; color: var(--muted); margin-top: -6px; }
+
+.steps { display: grid; gap: 12px; padding: 0; margin: 0; list-style: none; counter-reset: s; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 2.2rem 1fr; gap: 12px; align-items: start; }
+.steps li::before { content: counter(s); font-family: var(--display); font-weight: 800; color: var(--wax); font-size: 1.3rem; line-height: 1.4; }
+
+.proof { background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--yes); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; }
+.big { font-family: var(--display); font-weight: 800; font-size: 2.4rem; color: var(--yes); line-height: 1; font-variant-numeric: tabular-nums; }
+
+.features { columns: 2 260px; column-gap: 28px; padding-left: 1.1rem; margin: 0; }
+.features li { margin-bottom: 6px; break-inside: avoid; }
+
+/* Cómo te protege: diagrama de bloques */
+.flow { display: grid; gap: 0; justify-items: stretch; }
+.stage { display: grid; gap: 10px; }
+.stage-title { font-family: var(--mono); font-size: 0.76rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; }
+.block { background: var(--paper); border: 1.5px solid var(--line); border-radius: 10px; padding: 12px 14px; display: grid; gap: 4px; align-content: start; min-width: 0; }
+.block .n { font-family: var(--display); font-weight: 800; font-size: 0.95rem; color: var(--wax); }
+.block b { font-size: 1rem; line-height: 1.3; }
+.block span { font-size: 0.9rem; color: var(--muted); line-height: 1.4; }
+.block code { font-family: var(--mono); font-size: 0.76rem; color: var(--ink); background: var(--code-bg); border-radius: 4px; padding: 1px 5px; justify-self: start; }
+.block.pro-block { border-color: var(--wax); border-style: dashed; background: var(--wax-soft); }
+.block.result { border-color: var(--ink); }
+.arrow { justify-self: center; display: grid; justify-items: center; padding-block: 6px; color: var(--muted); font-family: var(--mono); font-size: 0.74rem; text-align: center; }
+.arrow::before { content: ""; width: 2px; height: 16px; background: var(--line); }
+.arrow::after { content: "▼"; font-size: 0.7rem; line-height: 1; color: var(--muted); }
+.env { display: grid; grid-template-columns: 1.4fr 1fr 1fr 2.4fr 1.2fr; border: 1.5px solid var(--ink); border-radius: 10px; overflow: hidden; }
+.env > div { padding: 10px; display: grid; gap: 3px; align-content: start; border-right: 1px solid var(--line); min-width: 0; background: var(--paper); }
+.env > div:last-child { border-right: 0; }
+.env b { font-size: 0.88rem; line-height: 1.25; }
+.env small { font-family: var(--mono); font-size: 0.7rem; color: var(--muted); }
+.env .layer { font-family: var(--mono); font-size: 0.68rem; color: var(--wax); }
+.env .cipher { background: var(--sigilo); }
+.order { font-size: 0.93rem; color: var(--muted); }
+.std td, .std th { font-size: 0.93rem; }
+.std td code { font-family: var(--mono); font-size: 0.8rem; }
+.std .layer-n { font-family: var(--display); font-weight: 800; color: var(--wax); width: 3rem; }
+.std th[scope="row"] { width: auto; }
+@media (max-width: 640px) {
+  .env { grid-template-columns: 1fr 1fr; }
+  .env > div { border-bottom: 1px solid var(--line); }
+  .env .cipher { grid-column: 1 / -1; }
+}
+
+.cta { background: var(--cta); color: #fff; border-radius: 14px; padding: 26px 24px; display: grid; gap: 10px; }
+.cta h2 { color: #fff; }
+.cta p { color: #fff; opacity: 0.94; }
+footer { font-size: 0.82rem; color: var(--muted); }
+
+@media (max-width: 560px) {
+  .hero { grid-template-columns: 1fr; }
+  .logo { width: 84px; height: 84px; }
+  .envelope { grid-template-columns: 1fr; }
+  .bar { grid-template-columns: 1fr; gap: 4px; }
+  .bar span.val { grid-column: 1; margin-top: 0; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="hero">
+    <svg class="logo" viewBox="0 0 24 24" role="img" aria-label="Logo de Sigilo: sello con candado">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#67e8f9"/><stop offset="1" stop-color="#0891b2"/></linearGradient></defs>
+  <defs><mask id="sello"><rect width="24" height="24" fill="#fff"/><path fill="#000" transform="translate(12 12.4) scale(0.55) translate(-12 -12)" d="M12 1a5 5 0 0 0-5 5v3H6a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V11a2 2 0 0 0-2-2h-1V6a5 5 0 0 0-5-5Zm-3 5a3 3 0 0 1 6 0v3H9V6Zm3 7a2 2 0 0 1 1 3.73V19h-2v-2.27A2 2 0 0 1 12 13Z"/></mask></defs><path fill="url(#g)" mask="url(#sello)" d="M23.00 12.00L22.75 12.56L22.17 13.07L21.61 13.52L21.41 14.00L21.61 14.58L22.00 15.25L22.21 15.92L21.99 16.45L21.37 16.77L20.62 16.98L20.06 17.24L19.87 17.72L19.95 18.44L20.00 19.21L19.78 19.78L19.21 20.00L18.44 19.95L17.72 19.87L17.24 20.06L16.98 20.62L16.77 21.37L16.45 21.99L15.92 22.21L15.25 22.00L14.58 21.61L14.00 21.41L13.52 21.61L13.07 22.17L12.56 22.75L12.00 23.00L11.44 22.75L10.93 22.17L10.48 21.61L10.00 21.41L9.42 21.61L8.75 22.00L8.08 22.21L7.55 21.99L7.23 21.37L7.03 20.62L6.76 20.06L6.28 19.87L5.56 19.95L4.79 20.00L4.22 19.78L4.00 19.21L4.05 18.44L4.13 17.72L3.94 17.24L3.38 16.98L2.63 16.77L2.01 16.45L1.79 15.92L2.00 15.25L2.39 14.58L2.59 14.00L2.39 13.52L1.83 13.07L1.25 12.56L1.00 12.00L1.25 11.44L1.83 10.93L2.39 10.48L2.59 10.00L2.39 9.42L2.00 8.75L1.79 8.08L2.01 7.55L2.63 7.23L3.38 7.02L3.94 6.76L4.13 6.28L4.05 5.56L4.00 4.79L4.22 4.22L4.79 4.00L5.56 4.05L6.28 4.13L6.76 3.94L7.02 3.38L7.23 2.63L7.55 2.01L8.08 1.79L8.75 2.00L9.42 2.39L10.00 2.59L10.48 2.39L10.93 1.83L11.44 1.25L12.00 1.00L12.56 1.25L13.07 1.83L13.52 2.39L14.00 2.59L14.58 2.39L15.25 2.00L15.92 1.79L16.45 2.01L16.77 2.63L16.98 3.38L17.24 3.94L17.72 4.13L18.44 4.05L19.21 4.00L19.78 4.22L20.00 4.79L19.95 5.56L19.87 6.28L20.06 6.76L20.62 7.02L21.37 7.23L21.99 7.55L22.21 8.08L22.00 8.75L21.61 9.42L21.41 10.00L21.61 10.48L22.17 10.93L22.75 11.44Z"/>
+</svg>
+    <div class="hero-text">
+      <p class="eyebrow">Mensajería cifrada</p>
+      <h1>Sigilo frente a Signal, WhatsApp y Telegram</h1>
+      <p class="slogan">Para el mundo, un sobre cerrado. Para tu contacto, tu mensaje.</p>
+      <p class="lead">Sigilo es una app de mensajes pensada para lo que nadie más debe leer. Usa los mismos estándares de cifrado que bancos y gobiernos, y con <strong>Sigilo PRO</strong> llega a un nivel de protección que hoy no ofrece ninguna de las apps populares.</p>
+    </div>
+  </header>
+
+  <section class="motto" aria-label="La idea de Sigilo">
+    <p class="line">Que lo transporte cualquiera. Que lo lea solo uno.</p>
+    <p>Sigilo nació con una idea sencilla: <strong>la confidencialidad no debería ser un lujo.</strong> Por eso usa los mismos estándares que protegen la información más sensible, en una app que cualquiera puede usar.</p>
+  </section>
+
+  <section class="tagline" aria-label="Lema">
+    <p>Para lo cotidiano, usa tu app de siempre.</p>
+    <p>Para lo que nadie más debe leer, Sigilo.</p>
+  </section>
+
+  <section aria-labelledby="sobre">
+    <h2 id="sobre">Así viaja tu mensaje</h2>
+    <div class="envelope">
+      <div>
+        <small>Lo que ve el servidor que lo transporta</small>
+        <p class="raw">AwMAAAAABwAB9xKq2LmR0vT8wYp1Kd3ZfQ7sNc4hGbE1uXo6WjPa5Ve2rZtiMy0LDnBgC4qHf…</p>
+      </div>
+      <div>
+        <small>Lo que lee tu contacto, al instante</small>
+        <p class="clear">Nos vemos a las 8 en el sitio de siempre 🌙</p>
+      </div>
+    </div>
+    <p>El mensaje se cierra dentro de tu teléfono y solo se abre en el de tu contacto. El servidor lo pasa como un sobre sellado a un buzón con un número al azar, no sabe de quién es ni para quién, y lo borra al entregarlo.</p>
+  </section>
+
+  <section aria-labelledby="tabla">
+    <h2 id="tabla">La comparativa</h2>
+    <div class="table-box">
+      <table>
+        <thead>
+          <tr><th scope="col"></th><th scope="col" class="us">Sigilo</th><th scope="col">Signal</th><th scope="col">WhatsApp</th><th scope="col">Telegram</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">Te registras sin número de teléfono ni correo</th><td class="us"><span class="mark y">✓ Sí</span></td><td><span class="mark w">⚠ En pruebas<small>solo Android, con pago</small></span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No<small>pide tu número</small></span></td></tr>
+          <tr><th scope="row">Nadie te escribe si tú no le das tu invitación</th><td class="us"><span class="mark y">✓ Sí</span></td><td><span class="mark w">⚠ No<small>con tu usuario cualquiera puede</small></span></td><td><span class="mark n">✕ No</span></td><td><span class="mark w">⚠ No<small>con tu usuario o en un grupo, cualquiera</small></span></td></tr>
+          <tr><th scope="row">Cifrado de extremo a extremo, siempre</th><td class="us"><span class="mark y">✓ Sí</span></td><td><span class="mark y">✓ Sí</span></td><td><span class="mark y">✓ Sí</span></td><td><span class="mark w">⚠ Solo en chats secretos<small>los normales quedan en sus servidores</small></span></td></tr>
+          <tr><th scope="row">Se cura sola si alguien copia tus llaves</th><td class="us"><span class="mark y">✓ Sí</span></td><td><span class="mark y">✓ Sí</span></td><td><span class="mark y">✓ Sí</span></td><td><span class="mark w">⚠ Solo en chats secretos</span></td></tr>
+          <tr><th scope="row">La notificación nunca enseña el texto ni quién escribe</th><td class="us"><span class="mark y">✓ Siempre</span></td><td><span class="mark w">⚠ Depende<small>de cómo tengas el teléfono</small></span></td><td><span class="mark w">⚠ Depende<small>de cómo tengas el teléfono</small></span></td><td><span class="mark w">⚠ Depende<small>de cómo tengas el teléfono</small></span></td></tr>
+          <tr><th scope="row">Mensajes de una sola lectura, también de texto</th><td class="us"><span class="mark y">✓ Sí</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark w">⚠ Texto en pruebas</span></td><td><span class="mark n">✕ No</span></td></tr>
+          <tr><th scope="row">Protección contra computadoras cuánticas</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark y">✓ Sí</span></td><td><span class="mark n">✕ No<small>en los chats</small></span></td><td><span class="mark n">✕ No</span></td></tr>
+          <tr><th scope="row">Protección cuántica renovada en cada turno, al nivel más alto del estándar (ML-KEM-1024)</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark w">⚠ Nivel medio<small>ML-KEM-768</small></span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td></tr>
+          <tr><th scope="row">Llaves de curva P-384, el nivel que exige el gobierno de EE.UU. para información secreta</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark n">✕ No<small>usa X25519</small></span></td><td><span class="mark n">✕ No<small>usa X25519</small></span></td><td><span class="mark n">✕ No<small>DH de 2048 bits en chats secretos</small></span></td></tr>
+          <tr><th scope="row">Borrar una conversación entera en los dos teléfonos</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark y">✓ Sí</span></td></tr>
+          <tr><th scope="row">Sin anuncios</th><td class="us"><span class="mark y">✓ Sí</span></td><td><span class="mark y">✓ Sí</span></td><td><span class="mark n">✕ No<small>en la pestaña Novedades</small></span></td><td><span class="mark n">✕ No<small>patrocinados en los canales</small></span></td></tr>
+          <tr><th scope="row">Atención directa de quien diseñó el cifrado</th><td class="us"><span class="mark y">✓ Sí</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note"><span class="pro" style="margin-left:0">PRO</span> funciones de Sigilo PRO. Datos de Signal, WhatsApp y Telegram según su información pública, revisada en octubre de 2026.</p>
+  </section>
+
+  <section aria-labelledby="cuantico">
+    <p class="eyebrow">Explicado fácil</p>
+    <h2 id="cuantico">Las llaves cuánticas</h2>
+    <p>Las computadoras cuánticas, cuando sean lo bastante grandes, podrán romper el cifrado de curvas que usan casi todas las apps de hoy. El peligro ya existe: alguien puede <strong>guardar hoy tus mensajes cifrados y esperar</strong> a tener una de esas máquinas para abrirlos dentro de unos años. A eso se le llama «guardar ahora, descifrar después».</p>
+    <p>Para eso existe <strong>ML-KEM</strong>, el estándar que el gobierno de EE.UU. escogió en 2024 (NIST FIPS 203) para resistir a esas máquinas. Viene en tres tamaños, y Sigilo PRO usa el más grande:</p>
+    <div class="compare-bar" role="img" aria-label="Nivel de seguridad de ML-KEM: 512 es categoría 1, 768 es categoría 3 (Signal), 1024 es categoría 5 (Sigilo PRO)">
+      <div class="bar"><b>ML-KEM-512</b><div class="track"><div class="fill" style="width:33%"></div></div><span class="val">Categoría 1 del NIST</span></div>
+      <div class="bar"><b>ML-KEM-768 · Signal</b><div class="track"><div class="fill" style="width:66%"></div></div><span class="val">Categoría 3 del NIST, equivale a AES-192</span></div>
+      <div class="bar us-bar"><b>ML-KEM-1024 · Sigilo PRO</b><div class="track"><div class="fill" style="width:100%"></div></div><span class="val">Categoría 5 del NIST, la más alta: equivale a AES-256</span></div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <h3>Se renueva en cada turno</h3>
+        <p>Cada vez que contestas, tu teléfono encierra un secreto nuevo en una cápsula ML-KEM-1024 que solo abre la llave más reciente de tu contacto. Si alguien llegara a copiar las llaves de un teléfono, en el siguiente turno queda fuera, incluso con una computadora cuántica.</p>
+        <p class="spec">Cápsula de 1.568 bytes · llave nueva por turno</p>
+      </div>
+      <div class="card">
+        <h3>Y una curva más grande</h3>
+        <p>Además, cada turno usa una llave de curva P-384, el tamaño que exige el gobierno de EE.UU. (norma CNSA) para información secreta. Signal y WhatsApp usan X25519, que es fuerte pero de menor margen, y Telegram usa en sus chats secretos un acuerdo DH de 2048 bits, por debajo de P-384.</p>
+        <p class="spec">P-384: 192 bits de seguridad · X25519: 128</p>
+      </div>
+      <div class="card">
+        <h3>Cinco secretos a la vez</h3>
+        <p>La llave que cierra cada mensaje PRO sale de mezclar cinco secretos: la conversación, la curva P-384, la cápsula cuántica, una curva P-256 y tu identidad. Para abrir uno habría que romperlos todos.</p>
+        <p class="spec">Mezcla con HKDF-SHA384</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="protege">
+    <p class="eyebrow">Por dentro</p>
+    <h2 id="protege">No es cifrado casero</h2>
+    <p>Sigilo no usa un algoritmo inventado. Usa exactamente las mismas piezas estándar que usan bancos, gobiernos y apps como Signal y WhatsApp, armadas en el orden correcto. Son sus <strong>5 capas</strong>, y Sigilo PRO suma dos más. Todas son normas publicadas por el NIST, el instituto de normas de EE.UU. Así se cierra cada mensaje, de principio a fin:</p>
+
+    <div class="flow" role="group" aria-label="Diagrama de cómo se cifra un mensaje">
+      <div class="stage">
+        <p class="stage-title">Paso 1 · Vincularse (una sola vez)</p>
+        <div class="row">
+          <div class="block"><span class="n">1</span><b>Llave de identidad</b><span>Cada teléfono crea su llave privada, que nunca sale de él, y una pública, que va en tu QR.</span><code>ECDH P-256</code></div>
+          <div class="block"><span class="n">2</span><b>Vinculación</b><span>Al escanear el QR, los dos llegan al mismo secreto sin que viaje nunca, ni por el QR ni por internet.</span><code>ECDH + HKDF-SHA256</code></div>
+        </div>
+      </div>
+      <div class="arrow">se mezclan: secreto de la conversación</div>
+      <div class="stage">
+        <p class="stage-title">Con Sigilo PRO se suman</p>
+        <div class="row">
+          <div class="block pro-block"><span class="n">6</span><b>Llaves más grandes</b><span>Un acuerdo de curva P-384, nivel CNSA, nuevo en cada turno.</span><code>ECDH P-384</code></div>
+          <div class="block pro-block"><span class="n">7</span><b>Protección cuántica</b><span>Una cápsula ML-KEM-1024 nueva en cada turno, que resiste a las computadoras cuánticas.</span><code>ML-KEM-1024</code></div>
+        </div>
+      </div>
+      <div class="arrow">todo se mezcla con HKDF-SHA384</div>
+      <div class="stage">
+        <p class="stage-title">Paso 2 · Se prepara la llave de ese mensaje</p>
+        <div class="row">
+          <div class="block"><span class="n">3</span><b>Llave nueva por mensaje</b><span>Una cadena de llaves: cada mensaje tiene la suya, de 256 bits, y la de un mensaje enviado se destruye. En cada cambio de turno la cadena vuelve a empezar desde llaves nuevas al azar, firmadas con tu identidad.</span><code>HMAC-SHA256 · doble trinquete</code></div>
+        </div>
+      </div>
+      <div class="arrow">de esa llave salen dos claves independientes</div>
+      <div class="stage">
+        <div class="row">
+          <div class="block"><span class="n">4</span><b>Clave para cifrar</b><span>Oculta lo que escribiste. Sin ella, el mensaje es solo ruido.</span><code>AES-256</code></div>
+          <div class="block"><span class="n">5</span><b>Clave para sellar</b><span>Firma todo el sobre. Si cambia un solo bit, no se abre.</span><code>HMAC-SHA256</code></div>
+        </div>
+      </div>
+      <div class="arrow">Paso 3 · se arma el sobre</div>
+      <div class="env" aria-label="Las cinco piezas del sobre">
+        <div><b>Etiqueta</b><small>82 bytes · a la vista</small><span class="layer">capa 3</span></div>
+        <div><b>Número al azar</b><small>16 bytes</small><span class="layer">capas 4 y 5</span></div>
+        <div><b>Arranque al azar (IV)</b><small>16 bytes</small><span class="layer">capa 4</span></div>
+        <div class="cipher"><b>Tu mensaje, cifrado</b><small>tamaño variable</small><span class="layer">capa 4 · AES-256</span></div>
+        <div><b>Sello</b><small>32 bytes = 256 bits</small><span class="layer">capa 5</span></div>
+      </div>
+      <div class="arrow">Paso 4 · viaja a un buzón privado</div>
+      <div class="stage">
+        <div class="row">
+          <div class="block"><b>El servidor</b><span>Ve llegar un sobre cerrado a un buzón con un número al azar que solo conocen los dos teléfonos. No sabe de quién es, ni para quién, ni qué dice, y lo borra al entregarlo.</span></div>
+          <div class="block result"><b>Paso 5 · Tu contacto lo abre</b><span>Su teléfono comprueba primero el sello. Solo si coincide calcula la misma llave y abre el mensaje. Después, esa llave se destruye.</span></div>
+        </div>
+      </div>
+    </div>
+    <p class="order"><strong>El orden es el correcto:</strong> primero se cifra y después se sella todo el sobre (lo que los expertos llaman <em>encrypt-then-MAC</em>). Así, un sobre alterado se rechaza antes de intentar abrirlo.</p>
+
+    <h3>Las capas y sus estándares oficiales</h3>
+    <div class="table-box">
+      <table class="std">
+        <thead><tr><th scope="col">Capa</th><th scope="col">Qué hace</th><th scope="col">Técnica</th><th scope="col">Estándar</th></tr></thead>
+        <tbody>
+          <tr><td class="layer-n">1</td><th scope="row">Llave de identidad</th><td><code>ECDH P-256</code></td><td>NIST SP 800-56A · SP 800-186</td></tr>
+          <tr><td class="layer-n">2</td><th scope="row">Vinculación</th><td><code>ECDH + HKDF-SHA256</code></td><td>RFC 5869 · NIST SP 800-56C</td></tr>
+          <tr><td class="layer-n">3</td><th scope="row">Llave nueva por mensaje y autorrecuperación</th><td><code>HMAC-SHA256 · doble trinquete ECDH</code></td><td>NIST FIPS 198-1 · FIPS 180-4 · SP 800-56A</td></tr>
+          <tr><td class="layer-n">4</td><th scope="row">Cifrado</th><td><code>AES-256-CBC, IV al azar</code></td><td>NIST FIPS 197 · SP 800-38A</td></tr>
+          <tr><td class="layer-n">5</td><th scope="row">Sello de autenticidad</th><td><code>HMAC-SHA256</code></td><td>NIST FIPS 198-1 · FIPS 180-4</td></tr>
+          <tr class="us"><td class="layer-n">6</td><th scope="row">Llaves más grandes <span class="pro">PRO</span></th><td><code>ECDH P-384</code></td><td>NIST SP 800-56A · nivel CNSA</td></tr>
+          <tr class="us"><td class="layer-n">7</td><th scope="row">Protección cuántica <span class="pro">PRO</span></th><td><code>ML-KEM-1024</code></td><td>NIST FIPS 203 · categoría 5</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="cura">
+    <h2 id="cura">Si alguien copia tus llaves, se cura sola</h2>
+    <p>Imagina que alguien logra copiar todo lo que hay en tu teléfono. Con Sigilo:</p>
+    <ol class="steps">
+      <li><p>Lo que ya venía de camino lo puede leer, igual que pasaría en cualquier app.</p></li>
+      <li><p>En cuanto tú y tu contacto vuelven a escribirse, cada teléfono estrena llaves nuevas al azar que nunca salen de él.</p></li>
+      <li><p>Desde ese momento el intruso queda fuera: no lee tus mensajes, no ve tus avisos («escribiendo…», en línea) y no puede hacerse pasar por tu contacto, porque cada cadena nueva va firmada con su identidad.</p></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="prueba">
+    <h2 id="prueba">No te lo digo yo: está verificado</h2>
+    <div class="proof">
+      <span class="big">58 de 58</span>
+      <p>Se capturó lo que de verdad sale del teléfono hacia internet, y un programa aparte, que <strong>no usa nada del código de Sigilo</strong>, rehízo el cifrado con librerías estándar y reconocidas, entre ellas una implementación independiente de ML-KEM. Abrió los mensajes solo con las llaves correctas y falló ante cualquier alteración. Se simuló también un robo de llaves: después del cambio de turno, la copia no sirvió para nada.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="todo">
+    <h2 id="todo">Todo lo que trae</h2>
+    <ul class="features">
+      <li>Chats, grupos de hasta 20 personas y notas para ti</li>
+      <li>Fotos, videos, documentos, audios, encuestas y contactos</li>
+      <li>Mensajes de una sola lectura, también de texto</li>
+      <li>Chats secretos que se borran solos</li>
+      <li>Mensajes temporales de 1 hora a 12 meses</li>
+      <li>Vincularte en persona con un QR, verificado al instante</li>
+      <li>Modo discreto, estado invisible y «Leído» que puedes apagar</li>
+      <li>Bloquear sin que la otra persona se entere</li>
+      <li>PIN para que nadie abra la app si toma tu teléfono</li>
+      <li>Borrado remoto de conversaciones con PRO</li>
+      <li>En español y en inglés, sin anuncios y sin vender datos</li>
+    </ul>
+  </section>
+
+  <section class="cta" aria-labelledby="probar">
+    <h2 id="probar">Pruébalo</h2>
+    <p>En Sigilo nadie entra sin invitación. Pídeme la tuya: te vinculas conmigo con un QR en un minuto, y tienes 15 días de Sigilo PRO para probar la protección cuántica.</p>
+  </section>
+
+  <footer>Sigilo · Para el mundo, un sobre cerrado. Para tu contacto, tu mensaje.</footer>
+</div>
+</body>
+</html>
