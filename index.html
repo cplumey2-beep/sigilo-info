@@ -276,6 +276,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
     <h2 id="protege">No es cifrado casero</h2>
     <p>Sigilo no usa un algoritmo inventado. Usa exactamente las mismas piezas estándar que usan bancos, gobiernos y apps como Signal y WhatsApp, armadas en el orden correcto. Son sus <strong>5 capas</strong>, y Sigilo PRO suma dos más. Todas son normas publicadas por el NIST, el instituto de normas de EE.UU. Así se cierra cada mensaje, de principio a fin:</p>
 
+    <p class="note">Los números de cada cuadro son el nombre de su capa: 1 a 5 son las de siempre, y 6 y 7 las que suma Sigilo PRO. El orden en que ocurren es el de las flechas, de arriba abajo.</p>
     <div class="flow" role="group" aria-label="Diagrama de cómo se cifra un mensaje">
       <div class="stage">
         <p class="stage-title">Paso 1 · Vincularse (una sola vez)</p>
@@ -286,13 +287,13 @@ footer { font-size: 0.82rem; color: var(--muted); }
       </div>
       <div class="arrow">se mezclan: secreto de la conversación</div>
       <div class="stage">
-        <p class="stage-title">Con Sigilo PRO se suman</p>
+        <p class="stage-title">Con Sigilo PRO se suman, y se renuevan en cada cambio de turno</p>
         <div class="row">
           <div class="block pro-block"><span class="n">6</span><b>Llaves más grandes</b><span>Un acuerdo de curva P-384, nivel CNSA, nuevo en cada turno.</span><code>ECDH P-384</code></div>
           <div class="block pro-block"><span class="n">7</span><b>Protección cuántica</b><span>Una cápsula ML-KEM-1024 nueva en cada turno, que resiste a las computadoras cuánticas.</span><code>ML-KEM-1024</code></div>
         </div>
       </div>
-      <div class="arrow">todo se mezcla con HKDF-SHA384</div>
+      <div class="arrow">con PRO, todo se mezcla con HKDF-SHA384 · sin PRO, se pasa directo al paso 2</div>
       <div class="stage">
         <p class="stage-title">Paso 2 · Se prepara la llave de ese mensaje</p>
         <div class="row">
@@ -308,7 +309,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
       </div>
       <div class="arrow">Paso 3 · se arma el sobre</div>
       <div class="env" aria-label="Las cinco piezas del sobre">
-        <div><b>Etiqueta</b><small>82 bytes · a la vista</small><span class="layer">capa 3</span></div>
+        <div><b>Etiqueta</b><small>82 bytes (con PRO, desde 195) · a la vista</small><span class="layer">capa 3</span></div>
         <div><b>Número al azar</b><small>16 bytes</small><span class="layer">capas 4 y 5</span></div>
         <div><b>Arranque al azar (IV)</b><small>16 bytes</small><span class="layer">capa 4</span></div>
         <div class="cipher"><b>Tu mensaje, cifrado</b><small>tamaño variable</small><span class="layer">capa 4 · AES-256</span></div>
