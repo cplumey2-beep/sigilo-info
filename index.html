@@ -124,6 +124,12 @@ th[scope="row"] { font-weight: 600; width: 40%; }
 
 .proof { background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--yes); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; }
 .big { font-family: var(--display); font-weight: 800; font-size: 2.4rem; color: var(--yes); line-height: 1; font-variant-numeric: tabular-nums; }
+.score { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 14px; padding-top: 6px; border-top: 1px solid var(--line); }
+.score > span:last-child { font-weight: 600; }
+.tally { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 10px; }
+.tally > div { display: grid; gap: 2px; align-content: start; background: var(--bg); border-radius: 8px; padding: 10px 12px; min-width: 0; }
+.tally b { font-family: var(--display); font-size: 1.5rem; color: var(--yes); line-height: 1.1; font-variant-numeric: tabular-nums; }
+.tally span { font-size: 0.92rem; color: var(--muted); line-height: 1.4; }
 
 .features { columns: 2 260px; column-gap: 28px; padding-left: 1.1rem; margin: 0; }
 .features li { margin-bottom: 6px; break-inside: avoid; }
@@ -355,8 +361,18 @@ footer { font-size: 0.82rem; color: var(--muted); }
   <section aria-labelledby="prueba">
     <h2 id="prueba">No te lo digo yo: está verificado</h2>
     <div class="proof">
-      <span class="big">58 de 58</span>
-      <p>Se capturó lo que de verdad sale del teléfono hacia internet, y un programa aparte, que <strong>no usa nada del código de Sigilo</strong>, rehízo el cifrado con librerías estándar y reconocidas, entre ellas una implementación independiente de ML-KEM. Abrió los mensajes solo con las llaves correctas y falló ante cualquier alteración. Se simuló también un robo de llaves: después del cambio de turno, la copia no sirvió para nada.</p>
+      <p>Cualquier app puede decir que cifra tus mensajes. Para comprobar que Sigilo lo hace de verdad, se le hizo un examen independiente:</p>
+      <ol class="steps">
+        <li><p>Se usó Sigilo como lo usa cualquier persona, y se guardó una copia de cada mensaje tal como sale del teléfono hacia internet.</p></li>
+        <li><p>Un programa aparte, que <strong>no usa nada del código de Sigilo</strong>, rehízo las cuentas del cifrado con herramientas reconocidas en todo el mundo, entre ellas otra versión independiente de la protección cuántica.</p></li>
+        <li><p>Con las llaves correctas, abrió cada mensaje y salió el texto exacto. Con cualquier cambio, aunque fuera de una sola letra, se negó a abrirlo.</p></li>
+      </ol>
+      <div class="score"><span class="big">58 de 58</span><span>comprobaciones superadas, sin ningún fallo</span></div>
+      <div class="tally">
+        <div><b>17</b><span>del cifrado de siempre: las 5 capas, una por una</span></div>
+        <div><b>20</b><span>de Sigilo PRO: la curva P-384 y la protección cuántica en cada turno</span></div>
+        <div><b>21</b><span>de un robo de llaves simulado: después del cambio de turno, la copia ya no sirvió para nada</span></div>
+      </div>
     </div>
   </section>
 
