@@ -196,7 +196,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
       <p class="eyebrow">Mensajería cifrada</p>
       <h1>Sigilo frente a Signal, WhatsApp y Telegram</h1>
       <p class="slogan">Para el mundo, un sobre cerrado. Para tu contacto, tu mensaje.</p>
-      <p class="lead">Sigilo es una app de mensajes pensada para lo que nadie más debe leer. Usa los mismos estándares de cifrado que bancos y gobiernos, y con <strong>Sigilo PRO</strong> llega a un nivel de protección que hoy no ofrece ninguna de las apps populares.</p>
+      <p class="lead">Sigilo es una app de mensajes pensada para lo que nadie más debe leer. Usa los mismos estándares de cifrado que bancos y gobiernos, y con <strong>Sigilo PRO</strong> llega a un nivel de protección que hoy no ofrece ninguna de las apps populares. Y además te cuida a ti: botón SOS, «avisa si no llego» y PIN de coacción, que ninguna otra trae.</p>
     </div>
   </header>
 
@@ -272,7 +272,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
       </div>
       <div class="card">
         <h3>🔐 PIN de coacción</h3>
-        <p>Si alguien te obliga a abrir Sigilo, escribes otro PIN y se abre una <strong>pantalla falsa</strong> con contactos y chats que tú preparaste. Tus conversaciones de verdad siguen intactas, y si quieres, otro PIN las borra en silencio. Y si pides ayuda desde la pantalla falsa, la alerta sale de verdad, sin que se vea nada.</p>
+        <p>Si alguien te obliga a abrir Sigilo, escribes otro PIN y se abre una <strong>pantalla falsa</strong> con contactos y chats que tú preparaste. Tus conversaciones de verdad siguen intactas. Y si quieres, otro PIN borra en silencio tus mensajes, o todo, como tú lo escojas. Y si pides ayuda desde la pantalla falsa, la alerta sale de verdad, sin que se vea nada.</p>
         <p class="spec">Mismo largo que tu PIN · nadie nota cuál escribiste</p>
       </div>
       <div class="card">
@@ -306,7 +306,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
       </div>
       <div class="card">
         <h3>Cinco secretos a la vez</h3>
-        <p>La llave que cierra cada mensaje PRO sale de mezclar cinco secretos: la conversación, la curva P-384, la cápsula cuántica, una curva P-256 y tu identidad. Para abrir uno habría que romperlos todos.</p>
+        <p>La llave que cierra cada mensaje PRO sale de mezclar cinco secretos: el secreto de la conversación, la curva P-384, la cápsula cuántica, una curva P-256 y tu identidad. Para abrir uno habría que romperlos todos.</p>
         <p class="spec">Mezcla con HKDF-SHA384</p>
       </div>
     </div>
@@ -350,7 +350,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
       </div>
       <div class="arrow">Paso 3 · se arma el sobre</div>
       <div class="env" aria-label="Las cinco piezas del sobre">
-        <div><b>Etiqueta</b><small>82 bytes (con PRO, desde 195) · a la vista</small><span class="layer">capa 3</span></div>
+        <div><b>Etiqueta</b><small>82 bytes (con PRO, desde 195) · a la vista, sin nada tuyo: solo datos técnicos</small><span class="layer">capa 3</span></div>
         <div><b>Número al azar</b><small>16 bytes</small><span class="layer">capas 4 y 5</span></div>
         <div><b>Arranque al azar (IV)</b><small>16 bytes</small><span class="layer">capa 4</span></div>
         <div class="cipher"><b>Tu mensaje, cifrado</b><small>tamaño variable</small><span class="layer">capa 4 · AES-256</span></div>
@@ -424,12 +424,16 @@ footer { font-size: 0.82rem; color: var(--muted); }
     <ul class="features">
       <li>Chats, grupos de hasta 20 personas y notas para ti</li>
       <li>Fotos, videos, documentos, audios, encuestas y contactos</li>
+      <li>Responder, reaccionar con emojis, editar, eliminar para todos, reenviar y marcar urgente</li>
       <li>Mensajes de una sola lectura, también de texto</li>
       <li>Chats secretos que se borran solos</li>
       <li>Mensajes temporales de 1 hora a 12 meses</li>
       <li>Vincularte en persona con un QR, verificado al instante</li>
+      <li>Solicitudes para vincularse: tú aceptas, rechazas o bloqueas</li>
       <li>Modo discreto, estado invisible y «Leído» que puedes apagar</li>
       <li>Bloquear sin que la otra persona se entere</li>
+      <li>Notificaciones que nunca enseñan el texto ni quién escribe</li>
+      <li>Organiza tus chats: fijados, favoritos, listas y archivados</li>
       <li>PIN para que nadie abra la app si toma tu teléfono</li>
       <li>Botón SOS y «Avisa si no llego» <span class="pro free">GRATIS</span></li>
       <li>PIN de coacción con pantalla falsa <span class="pro">PRO</span></li>
@@ -438,6 +442,8 @@ footer { font-size: 0.82rem; color: var(--muted); }
       <li>Buscar en cada chat, y sus fotos, enlaces y documentos a un toque</li>
       <li>Vista previa de los enlaces, como en WhatsApp</li>
       <li>Borrado remoto de conversaciones <span class="pro">PRO</span></li>
+      <li>Foto de perfil que ajustas a tu gusto, y temas de colores</li>
+      <li>Funciona en Android, iPhone y computadora, sin pasar por ninguna tienda de apps</li>
       <li>En español y en inglés, sin anuncios y sin vender datos</li>
     </ul>
   </section>
