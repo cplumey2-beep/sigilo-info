@@ -104,6 +104,7 @@ th[scope="row"] { font-weight: 600; width: 40%; }
 .mark small { font-weight: 400; color: var(--muted); font-size: 0.82rem; display: block; }
 .y { color: var(--yes); } .w { color: var(--warn); } .n { color: var(--no); }
 .pro { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--wax); background: var(--wax-soft); border-radius: 4px; padding: 1px 6px; margin-left: 6px; font-weight: 600; vertical-align: 2px; }
+.pro.free { color: var(--yes); background: transparent; border: 1px solid var(--yes); }
 .note { font-size: 0.88rem; color: var(--muted); }
 
 /* Las llaves, explicadas */
@@ -240,12 +241,44 @@ footer { font-size: 0.82rem; color: var(--muted); }
           <tr><th scope="row">Protección cuántica renovada en cada turno, al nivel más alto del estándar (ML-KEM-1024)</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark w">⚠ Nivel medio<small>ML-KEM-768</small></span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td></tr>
           <tr><th scope="row">Llaves de curva P-384, el nivel que exige el gobierno de EE.UU. para información secreta</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark n">✕ No<small>usa X25519</small></span></td><td><span class="mark n">✕ No<small>usa X25519</small></span></td><td><span class="mark n">✕ No<small>DH de 2048 bits en chats secretos</small></span></td></tr>
           <tr><th scope="row">Borrar una conversación entera en los dos teléfonos</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark y">✓ Sí</span></td></tr>
+          <tr><th scope="row">Botón SOS: alerta con tu ubicación en vivo a tus contactos de emergencia, que les suena aunque tengan tu chat silenciado</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro free">GRATIS</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark w">⚠ No<small>solo compartir la ubicación en vivo</small></span></td><td><span class="mark w">⚠ No<small>solo compartir la ubicación en vivo</small></span></td></tr>
+          <tr><th scope="row">«Avisa si no llego»: si no lo cancelas a tiempo, avisa solo, aunque tu teléfono esté apagado</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro free">GRATIS</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td></tr>
+          <tr><th scope="row">PIN de coacción: si te obligan a abrir la app, enseña una pantalla falsa (y, si quieres, borra en silencio)</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td></tr>
+          <tr><th scope="row">Firma de documentos y acuse certificado, con firma resistente a computadoras cuánticas</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td></tr>
           <tr><th scope="row">Sin anuncios</th><td class="us"><span class="mark y">✓ Sí</span></td><td><span class="mark y">✓ Sí</span></td><td><span class="mark n">✕ No<small>en la pestaña Novedades</small></span></td><td><span class="mark n">✕ No<small>patrocinados en los canales</small></span></td></tr>
           <tr><th scope="row">Atención directa de quien diseñó el cifrado</th><td class="us"><span class="mark y">✓ Sí</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td></tr>
         </tbody>
       </table>
     </div>
-    <p class="note"><span class="pro" style="margin-left:0">PRO</span> funciones de Sigilo PRO. Datos de Signal, WhatsApp y Telegram según su información pública, revisada en octubre de 2026.</p>
+    <p class="note"><span class="pro" style="margin-left:0">PRO</span> funciones de Sigilo PRO. <span class="pro free" style="margin-left:0">GRATIS</span> para todos, sin PRO. Datos de Signal, WhatsApp y Telegram según su información pública, revisada en octubre de 2026.</p>
+  </section>
+
+  <section aria-labelledby="unico">
+    <p class="eyebrow">Lo que ninguna otra trae</p>
+    <h2 id="unico">Pensado para cuando más lo necesitas</h2>
+    <p>Signal y WhatsApp cifran tus chats (Telegram, solo los secretos). Sigilo además te cuida <strong>en los momentos difíciles</strong>, con funciones que ninguna de las tres tiene.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>🆘 Botón SOS, gratis para todos</h3>
+        <p>Mantén la pastilla SOS 3 segundos y tus contactos de emergencia reciben una alarma con <strong>tu ubicación en vivo</strong>, que les suena aunque tengan tu chat silenciado. Cuando estés a salvo, tocas «Estoy bien». En una emergencia todo tiene que funcionar: por eso no es de pago.</p>
+        <p class="spec">Cifrado igual que un mensaje · solo lo ven tus contactos de emergencia</p>
+      </div>
+      <div class="card">
+        <h3>⏱️ «Avisa si no llego»</h3>
+        <p>¿Sales de noche, o vas a ver a alguien que no conoces? Pon un tiempo. Si no tocas «Llegué bien» antes, tus contactos de emergencia reciben una alerta con tu última ubicación, <strong>aunque tu teléfono esté apagado, sin batería o en otras manos</strong>. El aviso espera en el servidor cerrado con llave: el servidor no puede leerlo.</p>
+        <p class="spec">Se entrega solo, a la hora · lo cancelas con un toque</p>
+      </div>
+      <div class="card">
+        <h3>🔐 PIN de coacción</h3>
+        <p>Si alguien te obliga a abrir Sigilo, escribes otro PIN y se abre una <strong>pantalla falsa</strong> con contactos y chats que tú preparaste. Tus conversaciones de verdad siguen intactas, y si quieres, otro PIN las borra en silencio. Y si pides ayuda desde la pantalla falsa, la alerta sale de verdad, sin que se vea nada.</p>
+        <p class="spec">Mismo largo que tu PIN · nadie nota cuál escribiste</p>
+      </div>
+      <div class="card">
+        <h3>✍️ Firma de documentos</h3>
+        <p>Pide que te firmen un contrato o que confirmen que recibieron un mensaje (acuse certificado). Su teléfono firma <strong>qué recibió, quién, para quién y cuándo</strong>, y te llega un certificado que cualquiera puede comprobar. Si el documento cambia una sola letra, la firma deja de valer.</p>
+        <p class="spec">ECDSA P-384 + ML-DSA-87 (FIPS 204, post-cuántica)</p>
+      </div>
+    </div>
   </section>
 
   <section aria-labelledby="cuantico">
@@ -358,6 +391,13 @@ footer { font-size: 0.82rem; color: var(--muted); }
     </ol>
   </section>
 
+  <section aria-labelledby="servidor">
+    <h2 id="servidor">Dónde vive el servidor</h2>
+    <p>El servidor de Sigilo corre en la <strong>red global de Cloudflare</strong>, una de las redes más grandes y mejor protegidas del mundo, con miles de máquinas en cientos de ciudades.</p>
+    <p>Cloudflare tiene además una red aparte <strong>dentro de China</strong>, que por ley allí la opera una empresa china y bajo las reglas de ese gobierno. <strong>Sigilo no usa esa red:</strong> tus mensajes nunca pasan por servidores bajo la jurisdicción de China.</p>
+    <p>Y pase por donde pase, el servidor solo ve <strong>sobres cerrados</strong>. No sabe quién eres (no hay número ni correo), no puede leer lo que escribes y guarda cada sobre solo hasta que tu contacto lo recibe; después lo borra.</p>
+  </section>
+
   <section aria-labelledby="prueba">
     <h2 id="prueba">No te lo digo yo: está verificado</h2>
     <div class="proof">
@@ -373,6 +413,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
         <div><b>20</b><span>de Sigilo PRO: la curva P-384 y la protección cuántica en cada turno</span></div>
         <div><b>21</b><span>de un robo de llaves simulado: después del cambio de turno, la copia ya no sirvió para nada</span></div>
       </div>
+      <p>Y la <strong>firma de documentos</strong> se comprobó igual: otro programa, con otra versión independiente del estándar post-cuántico (FIPS 204), dio por buenas las firmas de Sigilo, y Sigilo dio por buenas las suyas. <strong>8 de 8</strong> comprobaciones superadas.</p>
     </div>
   </section>
 
@@ -388,6 +429,12 @@ footer { font-size: 0.82rem; color: var(--muted); }
       <li>Modo discreto, estado invisible y «Leído» que puedes apagar</li>
       <li>Bloquear sin que la otra persona se entere</li>
       <li>PIN para que nadie abra la app si toma tu teléfono</li>
+      <li>Botón SOS y «Avisa si no llego», gratis</li>
+      <li>PIN de coacción con pantalla falsa, con PRO</li>
+      <li>Firma de documentos y acuse certificado, con PRO</li>
+      <li>Enviar tu ubicación sin que ningún servicio de mapas se entere</li>
+      <li>Buscar en cada chat, y sus fotos, enlaces y documentos a un toque</li>
+      <li>Vista previa de los enlaces, como en WhatsApp</li>
       <li>Borrado remoto de conversaciones con PRO</li>
       <li>En español y en inglés, sin anuncios y sin vender datos</li>
     </ul>
@@ -395,7 +442,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
 
   <section class="cta" aria-labelledby="probar">
     <h2 id="probar">Pruébalo</h2>
-    <p>En Sigilo nadie entra sin invitación. Pídeme la tuya: te vinculas conmigo con un QR en un minuto, y tienes 15 días de Sigilo PRO para probar la protección cuántica.</p>
+    <p>En Sigilo nadie entra sin invitación. Pídeme la tuya: te vinculas conmigo con un QR en un minuto, y tienes 30 días de Sigilo PRO para probar la protección cuántica, el PIN de coacción y la firma de documentos.</p>
   </section>
 
   <footer>Sigilo · Para el mundo, un sobre cerrado. Para tu contacto, tu mensaje.</footer>
