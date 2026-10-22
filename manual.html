@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src 'self' data:; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'sha256-XCpiZ5ome8M+q4R3q2u1775rrhpE7MNX32+MkZRMHos='; img-src 'self' data:; base-uri 'none'; form-action 'none'">
 <meta name="referrer" content="no-referrer">
 <title>Manual de Sigilo</title>
 <meta name="description" content="Manual del usuario de Sigilo: cómo usar cada función, qué suma Sigilo PRO, y respuestas a las preguntas frecuentes.">
@@ -90,6 +90,13 @@ td { width: 24%; }
 .cta h2, .cta p { color: #fff; }
 .cta a { color: #fff; font-weight: 700; }
 footer { font-size: 0.82rem; color: var(--muted); }
+/* Buscador */
+.search { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 10px 0; display: grid; gap: 6px; }
+.search input { width: 100%; font: inherit; font-size: 1.05rem; padding: 12px 14px; border-radius: 12px; border: 1.5px solid var(--line); background: var(--paper); color: var(--ink); }
+.search input:focus { outline: none; border-color: var(--wax); box-shadow: 0 0 0 3px var(--wax-soft); }
+.note { font-size: 0.88rem; color: var(--muted); }
+.hide { display: none !important; }
+mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding: 0 2px; }
 @media (max-width: 560px) {
   .hero { grid-template-columns: 1fr; }
   .logo { width: 76px; height: 76px; }
@@ -111,10 +118,17 @@ footer { font-size: 0.82rem; color: var(--muted); }
     </div>
   </header>
 
+  <div class="search" role="search">
+    <label for="q" class="eyebrow">Buscar en el manual</label>
+    <input id="q" type="search" placeholder="Ej.: secreto, PIN, copia, candado, PRO…" autocomplete="off" spellcheck="false">
+    <p class="note" id="qInfo" aria-live="polite"></p>
+  </div>
+
   <nav class="toc" aria-label="Contenido">
     <h2>Contenido</h2>
     <ol>
       <li><a href="#empezar">Primeros pasos</a></li>
+      <li><a href="#pantalla">Lo que ves en la pantalla</a></li>
       <li><a href="#vincular">Vincularte con alguien</a></li>
       <li><a href="#escribir">Escribir y enviar</a></li>
       <li><a href="#sellos">Sellos: urgente, prioridad, sin prisa</a></li>
@@ -126,6 +140,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
       <li><a href="#copia">Copia de seguridad</a></li>
       <li><a href="#sos">SOS y «Avisa si no llego»</a></li>
       <li><a href="#privacidad">Privacidad y seguridad</a></li>
+      <li><a href="#cifrado">Cómo te protege (el cifrado)</a></li>
       <li><a href="#firma">Firma de documentos</a></li>
       <li><a href="#avisos">Notificaciones</a></li>
       <li><a href="#pro">Sigilo PRO y su prueba de 30 días</a></li>
@@ -187,8 +202,46 @@ footer { font-size: 0.82rem; color: var(--muted); }
     </details>
   </section>
 
-  <section id="vincular" aria-labelledby="h-vincular">
+  <section id="pantalla" aria-labelledby="h-pantalla">
     <p class="eyebrow">2</p>
+    <h2 id="h-pantalla">Lo que ves en la pantalla</h2>
+    <details data-k="tarjeta lista punto color estado escudo icono card list dot status shield">
+      <summary>🗂️ Las tarjetas de la lista de chats</summary>
+      <ul>
+        <li><b>El puntito de la foto</b> dice su estado: 🟢 Disponible, 🟡 Ausente, 🔴 Ocupado, ⚪ desconectado. A su lado, la pastilla con el estado o «Visto…» (su última vez).</li>
+        <li><b>🛡️ El escudo</b> junto al nombre: ese contacto tiene Sigilo PRO.</li>
+        <li><b>El número</b> en color: mensajes sin leer. La hora en color también avisa que hay algo nuevo.</li>
+        <li><b>⚠️</b> en la tarjeta: te llegó un mensaje urgente que aún no lees.</li>
+        <li><b>Una tarjeta morada con 🔒</b>, un poco hacia adentro y unida con una línea: un chat secreto, justo debajo del chat normal de esa persona.</li>
+        <li><b>🔐 Chats con candado</b> arriba de la lista: la carpeta de tus chats con candado.</li>
+        <li><b>Puntos en vez de texto:</b> la pantalla privada está tapando ese chat.</li>
+      </ul>
+    </details>
+    <details data-k="encabezado pastillas verificado pro contacto visto temporizador header pills verified seen timer">
+      <summary>🏷️ Las pastillas arriba de un chat</summary>
+      <ul>
+        <li><b>🔒 Chat secreto</b>: estás en un chat secreto.</li>
+        <li><b>Visto…</b> o su estado: cuándo usó Sigilo por última vez. <b>Escribiendo…</b> mientras te escribe.</li>
+        <li><b>Verificado</b> (verde) o <b>Sin verificar</b> (amarillo): si ya comprobaron el código de seguridad.</li>
+        <li><b>🛡️ PRO</b>: lo que <b>tú</b> envías en este chat va con Sigilo PRO (P-384 + ML-KEM-1024).</li>
+        <li><b>🛡️ Contacto PRO</b>: lo que <b>él</b> te envía va con PRO. «· prueba» si su PRO es de prueba.</li>
+        <li><b>⏱ 1 h</b> (o el tiempo que sea): los mensajes de este chat se borran solos.</li>
+        <li><b>Esperando que acepte</b>: le pediste vincularse y aún no contesta.</li>
+      </ul>
+      <p class="tip">Arriba de los mensajes, un aviso verde dice que el chat está cifrado de extremo a extremo y la identidad verificada (amarillo si falta verificar). Tócalo para ver cómo te protege.</p>
+    </details>
+    <details data-k="marcas estado mensaje enviado entregado leido checks status reloj programado editado">
+      <summary>✓ Las marcas de cada mensaje</summary>
+      <ul>
+        <li><b>○</b> pendiente de salir · <b>✓</b> enviado · <b>✓✓</b> entregado · <b>✓✓</b> en color: leído.</li>
+        <li><b>🕐</b> programado: sale a su hora. <b>⏱</b> se borra solo. <b>editado</b>: se corrigió después de enviarlo.</li>
+        <li>Las etiquetas <b>⚠️ Urgente</b>, <b>⭐ Prioridad</b>, <b>🕊️ Sin prisa</b> y <b>↪ Reenviado</b> van arriba del mensaje.</li>
+      </ul>
+    </details>
+  </section>
+
+  <section id="vincular" aria-labelledby="h-vincular">
+    <p class="eyebrow">3</p>
     <h2 id="h-vincular">Vincularte con alguien</h2>
     <p>En Sigilo nadie te escribe sin tu permiso: para hablar con alguien, los dos se vinculan.</p>
     <details>
@@ -237,7 +290,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="escribir" aria-labelledby="h-escribir">
-    <p class="eyebrow">3</p>
+    <p class="eyebrow">4</p>
     <h2 id="h-escribir">Escribir y enviar</h2>
     <details>
       <summary>💬 Mensajes, emojis y voz</summary>
@@ -245,6 +298,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
         <li>Escribe y toca enviar. Verás ○ pendiente, ✓ enviado, ✓✓ entregado y ✓✓ en color leído.</li>
         <li><b>😊</b> abre los emojis por categorías, con buscador y tus recientes.</li>
         <li><b>🎤</b> mantenlo presionado para grabar un mensaje de voz y suéltalo para enviarlo. Desliza ← para cancelar, o ↑ para bloquear la grabación: así puedes soltar el botón, escucharla y decidir si la envías.</li>
+        <li>Al escuchar un audio puedes cambiar su <b>velocidad</b> y moverte por la barra.</li>
         <li>Sin señal, los mensajes esperan y salen solos al volver la conexión.</li>
       </ul>
     </details>
@@ -263,7 +317,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
     </details>
     <details>
       <summary>↩️ Responder, reaccionar, editar, reenviar y eliminar</summary>
-      <p>Mantén el dedo sobre un mensaje: <b>Responder</b>, reaccionar con un emoji, <b>Copiar</b>, <b>Reenviar</b>, <b>Editar</b> (en los primeros minutos), <b>Eliminar para mí</b> o <b>Eliminar para todos</b>.</p>
+      <p>Mantén el dedo sobre un mensaje: <b>Responder</b>, reaccionar con un emoji (hay 100 a mano y ＋ para más; tocar otra vez la tuya la quita), <b>Copiar</b>, <b>Reenviar</b>, <b>Editar</b> (en los primeros minutos), <b>Eliminar para mí</b> o <b>Eliminar para todos</b>.</p>
       <p class="tip">Al <b>editar</b> también puedes ponerle, cambiarle o quitarle el sello (⚠️ urgente, ⭐ prioridad, 🕊️ sin prisa) con los mismos botones del ＋.</p>
     </details>
     <details>
@@ -279,7 +333,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="sellos" aria-labelledby="h-sellos">
-    <p class="eyebrow">4</p>
+    <p class="eyebrow">5</p>
     <h2 id="h-sellos">Sellos del mensaje</h2>
     <details>
       <summary>⚠️ Urgente · ⭐ Prioridad · 🕊️ Sin prisa</summary>
@@ -293,7 +347,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="organizar" aria-labelledby="h-organizar">
-    <p class="eyebrow">5</p>
+    <p class="eyebrow">6</p>
     <h2 id="h-organizar">Organizar tus chats</h2>
     <details>
       <summary>📌 Fijar chats y ordenarlos <span class="pro">10 con PRO</span></summary>
@@ -318,18 +372,37 @@ footer { font-size: 0.82rem; color: var(--muted); }
       <p>Mantén el dedo sobre una nota para <b>fijarla</b> arriba o <b>archivarla</b>. El botón de pegar trae lo que copiaste. En el ⋮ de Notas escoges el color de su tarjeta (el de Sigilo, verde menta o ámbar).</p>
     </details>
     <details>
-      <summary>🔕 Silenciar un chat</summary>
+      <summary>🔕 Silenciar y 🧹 vaciar un chat</summary>
       <p>Silencia un chat 8 horas, una semana o siempre: no suena ni avisa. Una alerta SOS de ese contacto sí suena.</p>
+      <p><b>Vaciar chat</b> (⋮ → Más): borra los mensajes de ese chat en tu teléfono; el contacto se conserva.</p>
     </details>
   </section>
 
   <section id="secretos" aria-labelledby="h-secretos">
-    <p class="eyebrow">6</p>
+    <p class="eyebrow">7</p>
     <h2 id="h-secretos">Chats secretos y mensajes que se borran</h2>
-    <details>
-      <summary>🔒 Chats secretos</summary>
-      <span class="where">Mantén el dedo sobre un chat → Nuevo chat secreto</span>
-      <p>Un chat aparte con la misma persona, que sale en la pestaña <b>Secretos</b> y, en tu lista, justo debajo de su chat normal. No va en las copias de seguridad: solo existe en los dos teléfonos.</p>
+    <details data-k="secret chat secreto oculto">
+      <summary>🔒 Qué es un chat secreto</summary>
+      <span class="where">Mantén el dedo sobre un chat → Nuevo chat secreto (o dentro del chat: ⋮ → Nuevo chat secreto)</span>
+      <p>Una conversación aparte con la misma persona; puedes tener varias. Sale en la pestaña <b>Secretos</b> y, en tu lista, justo debajo de su chat normal.</p>
+      <ul>
+        <li>Los mensajes <b>se borran solos</b> en los dos teléfonos (nace con 1 día; se cambia en ⏱ y vale para los dos).</li>
+        <li><b>No se pueden copiar ni reenviar.</b></li>
+        <li>En la lista y en los avisos <b>nunca se enseña lo escrito</b>.</li>
+        <li>Al salir de la app, el chat <b>se tapa</b>.</li>
+        <li>Cualquiera de los dos puede <b>eliminarlo</b>: desaparece en los dos teléfonos.</li>
+        <li>No va en las copias de seguridad: solo existe en esos dos teléfonos.</li>
+      </ul>
+    </details>
+    <details data-k="secret opciones chat secreto temporizador pantalla privada eliminar options">
+      <summary>⚙️ Opciones del chat secreto</summary>
+      <span class="where">Dentro del chat secreto: ⋮ → Opciones del chat secreto (o mantén el dedo sobre su tarjeta)</span>
+      <ul>
+        <li><b>⏱ Mensajes temporales:</b> cada cuánto se borran (para los dos).</li>
+        <li><b>👁️ Pantalla privada en este chat</b> <span class="pro">PRO</span>: «Como en Ajustes», «Siempre» o «Nunca».</li>
+        <li><b>Eliminar chat secreto</b>: se borra en los dos teléfonos.</li>
+      </ul>
+      <p class="tip">Si su chat normal tiene candado, sus chats secretos también quedan dentro de la carpeta con candado.</p>
     </details>
     <details>
       <summary>⏱️ Mensajes temporales</summary>
@@ -339,12 +412,23 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="grupos" aria-labelledby="h-grupos">
-    <p class="eyebrow">7</p>
+    <p class="eyebrow">8</p>
     <h2 id="h-grupos">Grupos</h2>
     <details>
       <summary>👥 Crear y manejar un grupo</summary>
       <span class="where">⋮ → Nuevo grupo</span>
-      <p>Hasta 20 personas. Cada mensaje se cifra por separado para cada miembro. Los administradores agregan, quitan y nombran a otros administradores; cada uno puede salirse cuando quiera.</p>
+      <p>Hasta 20 personas. Escoge a tus contactos y ponle nombre. Cada mensaje se cifra por separado para cada miembro; los miembros que no se conocían quedan presentados entre sí.</p>
+    </details>
+    <details data-k="grupo administrador agregar sacar nombre group admin members">
+      <summary>👑 Administrar el grupo</summary>
+      <span class="where">Dentro del grupo, toca su nombre arriba</span>
+      <ul>
+        <li><b>Agregar miembros</b> y <b>Sacar del grupo</b> (deja de recibir lo nuevo al momento).</li>
+        <li><b>Hacer administrador</b> o <b>Quitar administrador</b>.</li>
+        <li>Cambiar el <b>nombre</b> del grupo y sus <b>mensajes temporales</b>.</li>
+        <li><b>Cerrar el grupo para todos</b>: nadie puede escribir más en él; a cada uno le queda su conversación hasta que la borre.</li>
+      </ul>
+      <p class="tip">Solo los administradores pueden cambiar estas cosas. Cualquiera puede salirse.</p>
     </details>
     <details>
       <summary>ℹ️ Quién recibió y quién leyó</summary>
@@ -353,12 +437,12 @@ footer { font-size: 0.82rem; color: var(--muted); }
     <details>
       <summary>🚪 Salir de un grupo o eliminarlo</summary>
       <span class="where">Chat del grupo → ⋮ → Más</span>
-      <p><b>Salir del grupo</b> avisa a los demás. Cuando ya no eres miembro, puedes <b>Eliminar grupo</b> de tu teléfono.</p>
+      <p><b>Salir del grupo</b> avisa a los demás (y puedes borrar también la conversación de tu teléfono). Cuando ya no eres miembro, o el grupo se cerró, puedes <b>Eliminar grupo</b> de tu teléfono.</p>
     </details>
   </section>
 
   <section id="candado" aria-labelledby="h-candado">
-    <p class="eyebrow">8</p>
+    <p class="eyebrow">9</p>
     <h2 id="h-candado">Chats con candado <span class="pro">PRO</span></h2>
     <p>Para esas conversaciones que no quieres que nadie vea por accidente, aunque tenga tu teléfono abierto en la mano.</p>
     <details>
@@ -382,7 +466,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="programados" aria-labelledby="h-programados">
-    <p class="eyebrow">9</p>
+    <p class="eyebrow">10</p>
     <h2 id="h-programados">Mensajes programados <span class="pro">PRO</span></h2>
     <details>
       <summary>🕐 Programar un mensaje</summary>
@@ -400,7 +484,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="copia" aria-labelledby="h-copia">
-    <p class="eyebrow">10</p>
+    <p class="eyebrow">11</p>
     <h2 id="h-copia">Copia de seguridad</h2>
     <p>Si pierdes el teléfono, se daña o lo cambias, con tu copia recuperas tus contactos, tus chats y tus llaves, <b>sin volver a vincularte con nadie</b>.</p>
     <details>
@@ -448,7 +532,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="sos" aria-labelledby="h-sos">
-    <p class="eyebrow">11</p>
+    <p class="eyebrow">12</p>
     <h2 id="h-sos">SOS y «Avisa si no llego»</h2>
     <p>Para todos, con o sin PRO: en una emergencia todo tiene que funcionar.</p>
     <details>
@@ -460,6 +544,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
       <summary>🆘 Pedir ayuda</summary>
       <span class="where">⋮ → SOS</span>
       <p>Mantén apretado 3 segundos. Tus contactos de emergencia reciben una alarma con tu ubicación en vivo, que les suena aunque tengan tu chat silenciado. Cuando estés a salvo, toca <b>Estoy bien</b>.</p>
+      <p class="tip">Con una alerta activa, la pastilla del menú cambia a <b>✅ Cancelar SOS · Estoy bien</b> (pide confirmar). A tus contactos les llega que ya estás bien.</p>
     </details>
     <details>
       <summary>⏱️ Avisa si no llego</summary>
@@ -468,20 +553,20 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="privacidad" aria-labelledby="h-privacidad">
-    <p class="eyebrow">12</p>
+    <p class="eyebrow">13</p>
     <h2 id="h-privacidad">Privacidad y seguridad</h2>
     <p class="where">Ajustes → Privacidad y seguridad</p>
     <details>
       <summary>🔢 PIN de la app</summary>
-      <p><b>Bloquear Sigilo con PIN</b>: nadie abre la app si toma tu teléfono. Escoge cuánto tiempo pasa antes de pedirlo otra vez.</p>
+      <p><b>Bloquear Sigilo con PIN</b>: nadie abre la app si toma tu teléfono. Para activarlo escribes el PIN dos veces; para quitarlo, otra vez. En <b>Bloquear al salir de la app</b> escoges cuánto tiempo pasa antes de pedirlo de nuevo.</p>
       <p class="tip">El PIN no se puede recuperar. Si lo olvidas, la única salida es <b>Olvidé mi PIN</b>, que borra Sigilo de ese teléfono. Con una copia de seguridad, lo recuperas todo.</p>
     </details>
     <details>
       <summary>🕶️ Modo discreto, estado y «Leído»</summary>
       <ul>
-        <li><b>Modo discreto:</b> oculta los mensajes, los nombres o ambos en la lista (para todos los chats o para uno).</li>
-        <li><b>Tu estado:</b> Disponible, Ausente, Ocupado o Invisible (te ven desconectado).</li>
-        <li><b>Mi última vez:</b> exacta, aproximada o escondida.</li>
+        <li><b>Modo discreto:</b> en la lista de chats, «Mostrar todo», «Ocultar mensajes», «Ocultar nombres» u «Ocultar ambos», por si alguien mira tu pantalla (dentro del chat se ve todo). En Ajustes vale para todos; para uno solo, mantén el dedo sobre su chat → Modo discreto de este chat.</li>
+        <li><b>Tu estado:</b> Disponible, Ausente, Ocupado o Invisible (te ven desconectado y no se les avisa ni que escribes ni que lees).</li>
+        <li><b>Mi última vez:</b> «Exacta (con la hora)», «Aproximada (sin la hora)» o «Nadie la ve». Si la escondes, tampoco ves la de los demás.</li>
         <li><b>Confirmaciones de lectura («Leído»):</b> apágalas y nadie sabe si leíste (tú tampoco lo ves de los demás).</li>
       </ul>
     </details>
@@ -492,7 +577,13 @@ footer { font-size: 0.82rem; color: var(--muted); }
     </details>
     <details>
       <summary>🔐 PIN de coacción <span class="pro">PRO</span></summary>
-      <p>Si alguien te obliga a abrir Sigilo, escribe tu PIN de coacción: se abre una <b>pantalla falsa</b> con los contactos y chats que tú preparaste. Si quieres, ese PIN también borra en silencio tus mensajes, o todo. Si pides SOS desde la pantalla falsa, la alerta sale de verdad.</p>
+      <span class="where">Ajustes → Privacidad y seguridad → PIN de coacción (necesita el PIN de la app)</span>
+      <p>Si alguien te obliga a abrir Sigilo, escribe tu PIN de coacción: se abre una <b>pantalla falsa</b>, sin conexión, con los contactos y chats que tú preparaste en su editor. Tus conversaciones de verdad siguen intactas: con tu PIN normal vuelves a todo.</p>
+      <ul>
+        <li>Tiene el <b>mismo largo</b> que tu PIN y debe ser bien distinto, para que nadie note cuál escribiste.</li>
+        <li><b>PIN de borrado</b> (si lo quieres): borra en silencio <b>solo los mensajes</b> (contactos y llaves se quedan) o <b>todo</b>, como si nunca hubieras instalado Sigilo. Se confirma al activarlo.</li>
+        <li>Si pides <b>SOS</b> desde la pantalla falsa, la alerta sale de verdad, en silencio.</li>
+      </ul>
     </details>
     <details>
       <summary>⛔ Bloquear, desvincular y 🧨 borrado remoto</summary>
@@ -506,8 +597,38 @@ footer { font-size: 0.82rem; color: var(--muted); }
     </details>
   </section>
 
+  <section id="cifrado" aria-labelledby="h-cifrado">
+    <p class="eyebrow">14</p>
+    <h2 id="h-cifrado">Cómo te protege (el cifrado)</h2>
+    <details data-k="cifrado encryption extremo e2e llave clave key servidor capas layers">
+      <summary>🔑 Cifrado de extremo a extremo</summary>
+      <p>Cada mensaje se cierra <b>dentro de tu teléfono</b> antes de salir y solo se abre en el teléfono de tu contacto. Nadie en el camino puede leerlo: ni el servidor, ni tu compañía de internet, ni Sigilo.</p>
+      <ul>
+        <li>Tu cuenta es una <b>llave</b> que se crea en tu teléfono y nunca sale de él.</li>
+        <li>Cada mensaje usa una <b>llave nueva</b>, que se destruye al usarse: 5 capas de cifrado con estándares oficiales (NIST).</li>
+        <li>El servidor solo ve <b>sobres cerrados</b> que van a buzones con un número al azar; no sabe de quién son ni para quién, y los borra al entregarlos.</li>
+      </ul>
+    </details>
+    <details data-k="pro cuantico quantum ml-kem p-384 capas 7">
+      <summary>🛡️ Con Sigilo PRO: 7 capas y protección cuántica <span class="pro">PRO</span></summary>
+      <p>PRO suma dos capas que se renuevan en cada turno: una llave de curva <b>P-384</b> (el nivel que exige el gobierno de EE.UU. para información secreta) y una cápsula <b>ML-KEM-1024</b>, el estándar más alto contra las computadoras cuánticas. PRO protege lo que tú envías, aunque tu contacto no lo tenga.</p>
+    </details>
+    <details data-k="se cura sola autorrecuperacion robo llaves copia heal">
+      <summary>♻️ Se cura sola si alguien copia tus llaves</summary>
+      <p>Si alguien llegara a copiar las llaves de un teléfono, en cuanto tú y tu contacto vuelvan a escribirse, cada teléfono estrena llaves nuevas al azar, firmadas con su identidad: el intruso queda fuera. Lo que ya pasó antes no lo puede abrir.</p>
+    </details>
+    <details data-k="verificar codigo seguridad safety verified identidad">
+      <summary>✅ Verificar a un contacto</summary>
+      <p>Vincularse en persona con el QR deja a los dos <b>verificados</b> al instante. Si se vincularon a distancia, toquen el nombre arriba del chat y comparen el <b>código de seguridad</b> (en persona o por llamada): si es el mismo en los dos teléfonos, nadie se metió en medio.</p>
+    </details>
+    <details data-k="servidor ve nada metadatos server">
+      <summary>👁️ Qué ve el servidor</summary>
+      <p>Sobres cerrados, buzones con números al azar y la hora. No ve nombres, números de teléfono, contactos, ni lo que escribes. Más detalles en <b>Información → Qué ve el servidor</b> y <b>Cómo te protege</b>, y en <a href="./#protege">la explicación completa con sus estándares</a>.</p>
+    </details>
+  </section>
+
   <section id="firma" aria-labelledby="h-firma">
-    <p class="eyebrow">13</p>
+    <p class="eyebrow">15</p>
     <h2 id="h-firma">Firma de documentos <span class="pro">PRO</span></h2>
     <details>
       <summary>✍️ Pedir una firma o un acuse certificado</summary>
@@ -518,7 +639,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="avisos" aria-labelledby="h-avisos">
-    <p class="eyebrow">14</p>
+    <p class="eyebrow">16</p>
     <h2 id="h-avisos">Notificaciones</h2>
     <details>
       <summary>🔔 Activarlas y probarlas</summary>
@@ -529,7 +650,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="pro" aria-labelledby="h-pro">
-    <p class="eyebrow">15</p>
+    <p class="eyebrow">17</p>
     <h2 id="h-pro">Sigilo PRO y su prueba de 30 días</h2>
     <details>
       <summary>🛡️ Qué suma PRO</summary>
@@ -543,7 +664,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="informacion" aria-labelledby="h-informacion">
-    <p class="eyebrow">16</p>
+    <p class="eyebrow">18</p>
     <h2 id="h-informacion">La sección Información</h2>
     <details>
       <summary>ℹ️ Qué hay en Información</summary>
@@ -559,7 +680,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="funciones" aria-labelledby="h-funciones">
-    <p class="eyebrow">17</p>
+    <p class="eyebrow">19</p>
     <h2 id="h-funciones">Funciones: sin PRO y con PRO</h2>
     <div class="table-box">
       <table>
@@ -589,7 +710,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
   </section>
 
   <section id="faq" aria-labelledby="h-faq">
-    <p class="eyebrow">18</p>
+    <p class="eyebrow">20</p>
     <h2 id="h-faq">Preguntas frecuentes</h2>
     <details>
       <summary>¿Por qué no me pide número de teléfono ni correo?</summary>
@@ -643,6 +764,10 @@ footer { font-size: 0.82rem; color: var(--muted); }
       <summary>¿Dónde está el servidor?</summary>
       <p>En la red global de Cloudflare. Sigilo no usa la red de Cloudflare dentro de China: tus mensajes nunca pasan por servidores bajo esa jurisdicción.</p>
     </details>
+    <details data-k="actualizar version nueva update">
+      <summary>¿Cómo se actualiza Sigilo?</summary>
+      <p>Solo. Cuando sale una versión nueva, Sigilo te avisa «Hay una versión nueva de Sigilo»: toca <b>Actualizar ahora</b>, tarda un segundo y tus chats no se pierden. Conviene que tú y tus contactos tengan la misma versión. Las novedades de cada una están en <b>Información → Versiones</b>.</p>
+    </details>
     <details>
       <summary>¿Puedo usar Sigilo en la computadora?</summary>
       <p>Sí: ábrelo en Chrome o Edge e instálalo. Ten en cuenta que cada instalación es una cuenta aparte; para pasar tu cuenta de un aparato a otro, usa la copia de seguridad.</p>
@@ -656,5 +781,46 @@ footer { font-size: 0.82rem; color: var(--muted); }
 
   <footer>Sigilo · Para el mundo, un sobre cerrado. Para tu contacto, tu mensaje.</footer>
 </div>
+<script>
+// Buscador del manual: escribe una palabra (en español o en inglés) y quedan a la vista solo los temas que la tienen,
+// abiertos. Sin acentos ni mayúsculas. Algunas palabras en inglés llevan a su tema en español.
+(() => {
+  const ALIAS = { secret: 'secreto', lock: 'candado', locked: 'candado', backup: 'copia', restore: 'restaurar', cloud: 'nube', schedule: 'programa', scheduled: 'programa',
+    privacy: 'privacidad', private: 'privada', screen: 'pantalla', mask: 'pantalla privada', masked: 'pantalla privada', hide: 'ocult', encryption: 'cifra', encrypt: 'cifra',
+    quantum: 'cuantic', signature: 'firma', sign: 'firma', group: 'grupo', notification: 'aviso', notifications: 'aviso', password: 'contrasena', delete: 'borra', erase: 'borra',
+    voice: 'voz', audio: 'audio', photo: 'foto', emergency: 'emergencia', contact: 'contacto', block: 'bloque', invite: 'invitacion', link: 'vincul', pin: 'pin', status: 'estado',
+    unread: 'leido', read: 'leido', pinned: 'fijad', favorite: 'favorit', archive: 'archiv', mute: 'silenci', timer: 'temporal', disappearing: 'temporal', urgent: 'urgente',
+    priority: 'prioridad', stamp: 'sello', edit: 'edit', reply: 'respond', forward: 'reenvi', reaction: 'reacci', emoji: 'emoji', search: 'busca', license: 'licencia', trial: 'prueba',
+    duress: 'coaccion', fake: 'falsa', wipe: 'borrado', verify: 'verific', safety: 'seguridad', server: 'servidor', phone: 'telefono', install: 'instal', theme: 'apariencia', language: 'idioma' };
+  const plain = (t) => t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  const q = document.getElementById('q'), info = document.getElementById('qInfo');
+  const sections = [...document.querySelectorAll('main section, .wrap > section')].filter((x) => x.querySelector('details'));
+  const toc = document.querySelector('.toc');
+  const items = [...document.querySelectorAll('details')].map((d) => ({ d, text: plain(d.textContent + ' ' + (d.dataset.k || '')), wasOpen: d.open }));
+  function run() {
+    const raw = plain(q.value.trim());
+    if (raw.length < 2) {
+      for (const it of items) { it.d.classList.remove('hide'); it.d.open = it.wasOpen; }
+      for (const s of sections) s.classList.remove('hide');
+      toc.classList.remove('hide');
+      info.textContent = '';
+      return;
+    }
+    const words = raw.split(/\s+/).filter(Boolean).map((w) => [w, ALIAS[w] ? plain(ALIAS[w]) : null].filter(Boolean));
+    let found = 0;
+    for (const it of items) {
+      const ok = words.every((alts) => alts.some((w) => it.text.includes(w)));
+      it.d.classList.toggle('hide', !ok);
+      it.d.open = ok;
+      if (ok) found++;
+    }
+    for (const s of sections) s.classList.toggle('hide', !s.querySelector('details:not(.hide)'));
+    toc.classList.toggle('hide', true);
+    info.textContent = found ? found + (found === 1 ? ' tema encontrado' : ' temas encontrados') : 'No se encontró nada. Prueba con otra palabra.';
+  }
+  q.addEventListener('input', run);
+  q.addEventListener('keydown', (e) => { if (e.key === 'Escape') { q.value = ''; run(); } });
+})();
+</script>
 </body>
 </html>
