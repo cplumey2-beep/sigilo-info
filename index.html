@@ -101,13 +101,17 @@ td { width: 15%; }
 th[scope="row"] { font-weight: 600; width: 40%; }
 .us { background: var(--sigilo); }
 .mark { display: inline-flex; gap: 6px; align-items: baseline; font-weight: 700; }
-.mark small { font-weight: 400; color: var(--muted); font-size: 0.82rem; display: block; }
+.mark { flex-wrap: wrap; }
+.mark small { font-weight: 400; color: var(--muted); font-size: 0.82rem; display: block; flex-basis: 100%; }
 .y { color: var(--yes); } .w { color: var(--warn); } .n { color: var(--no); }
 .pro { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--wax); background: var(--wax-soft); border-radius: 4px; padding: 1px 6px; margin-left: 6px; font-weight: 600; vertical-align: 2px; }
 .pro.free { color: var(--yes); background: transparent; border: 1px solid var(--yes); }
 .features .pro { color: #22d3ee; background: #0b2533; font-size: 0.78rem; font-weight: 800; padding: 3px 9px; border-radius: 6px; letter-spacing: 0.08em; box-shadow: 0 0 0 1px rgba(34, 211, 238, 0.35); }
 .features .pro.free { color: #4ade80; background: #0c2a1a; box-shadow: 0 0 0 1px rgba(74, 222, 128, 0.4); border: 0; }
 .note { font-size: 0.88rem; color: var(--muted); }
+.manual-link a { display: inline-block; font-weight: 700; color: var(--wax); text-decoration: none; border: 1px solid var(--wax); border-radius: 999px; padding: 4px 14px; font-size: 0.95rem; }
+.manual-link a:hover { background: var(--wax-soft); }
+footer a { color: var(--wax); }
 
 /* Las llaves, explicadas */
 .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; }
@@ -196,6 +200,7 @@ footer { font-size: 0.82rem; color: var(--muted); }
       <p class="eyebrow">Privacidad máxima · Mensajería cifrada</p>
       <h1>Sigilo frente a Signal, WhatsApp y Telegram</h1>
       <p class="slogan">Para el mundo, un sobre cerrado. Para tu contacto, tu mensaje.</p>
+      <p class="manual-link"><a href="manual.html">📖 Manual y preguntas frecuentes ›</a></p>
       <p class="lead">Sigilo es una app de mensajes pensada para lo que nadie más debe leer. Usa los mismos estándares de cifrado que bancos y gobiernos, y con <strong>Sigilo PRO</strong> llega a un nivel de protección que hoy no ofrece ninguna de las apps populares. Y además te cuida a ti: botón SOS, «avisa si no llego» y PIN de coacción, que ninguna otra trae.</p>
     </div>
   </header>
@@ -247,6 +252,11 @@ footer { font-size: 0.82rem; color: var(--muted); }
           <tr><th scope="row">«Avisa si no llego»: si no lo cancelas a tiempo, avisa solo, aunque tu teléfono esté apagado</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro free">GRATIS</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td></tr>
           <tr><th scope="row">PIN de coacción: si te obligan a abrir la app, enseña una pantalla falsa (y, si quieres, borra en silencio)</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td></tr>
           <tr><th scope="row">Firma de documentos y acuse certificado, con firma resistente a computadoras cuánticas</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td></tr>
+          <tr><th scope="row">Chats con candado: salen de la lista y se abren con huella, cara o un PIN aparte (y hasta la carpeta se puede esconder)</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark y">✓ Sí</span></td><td><span class="mark n">✕ No<small>solo un código para toda la app</small></span></td></tr>
+          <tr><th scope="row">Mensajes programados que salen cifrados, aunque tu teléfono esté apagado</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark w">⚠ Sí<small>sin cifrado de extremo a extremo</small></span></td></tr>
+          <tr><th scope="row">Copia de seguridad cerrada con una contraseña que solo tú sabes</th><td class="us"><span class="mark y">✓ Sí<small>en archivo gratis · automática en la nube con PRO</small></span></td><td><span class="mark y">✓ Sí</span></td><td><span class="mark w">⚠ Solo si la activas<small>si no, queda en tu nube sin esa protección</small></span></td><td><span class="mark n">✕ No<small>los chats normales viven en sus servidores</small></span></td></tr>
+          <tr><th scope="row">Pantalla privada: lo que escribes y lees, oculto para quien mire de lado</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro">PRO</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td></tr>
+          <tr><th scope="row">Sellos del mensaje: urgente (suena dos veces), prioridad y sin prisa (llega sin sonar)</th><td class="us"><span class="mark y">✓ Sí</span><span class="pro free">GRATIS</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark w">⚠ Solo «sin sonido»</span></td></tr>
           <tr><th scope="row">Sin anuncios</th><td class="us"><span class="mark y">✓ Sí</span></td><td><span class="mark y">✓ Sí</span></td><td><span class="mark n">✕ No<small>en la pestaña Novedades</small></span></td><td><span class="mark n">✕ No<small>patrocinados en los canales</small></span></td></tr>
           <tr><th scope="row">Atención directa de quien diseñó el cifrado</th><td class="us"><span class="mark y">✓ Sí</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td><td><span class="mark n">✕ No</span></td></tr>
         </tbody>
@@ -434,7 +444,12 @@ footer { font-size: 0.82rem; color: var(--muted); }
       <li>Modo discreto, estado invisible y «Leído» que puedes apagar</li>
       <li>Bloquear sin que la otra persona se entere</li>
       <li>Notificaciones que nunca enseñan el texto ni quién escribe</li>
-      <li>Organiza tus chats: fijados, favoritos, listas y archivados</li>
+      <li>Organiza tus chats: fijados (3, y 10 con <span class="pro">PRO</span>), favoritos, listas y archivados</li>
+      <li>Chats con candado, con huella, cara o PIN aparte <span class="pro">PRO</span></li>
+      <li>Mensajes programados, hasta 30 días, que salen aunque tu teléfono esté apagado <span class="pro">PRO</span></li>
+      <li>Copia de seguridad cifrada en archivo <span class="pro free">GRATIS</span> y automática en la nube <span class="pro">PRO</span></li>
+      <li>Sellos: ⚠️ urgente, ⭐ prioridad y 🕊️ sin prisa <span class="pro free">GRATIS</span></li>
+      <li>Pantalla privada contra miradas de lado <span class="pro">PRO</span></li>
       <li>PIN para que nadie abra la app si toma tu teléfono</li>
       <li>Botón SOS y «Avisa si no llego» <span class="pro free">GRATIS</span></li>
       <li>PIN de coacción con pantalla falsa <span class="pro">PRO</span></li>
@@ -451,10 +466,11 @@ footer { font-size: 0.82rem; color: var(--muted); }
 
   <section class="cta" aria-labelledby="probar">
     <h2 id="probar">Pruébalo</h2>
-    <p>En Sigilo nadie entra sin invitación, y por eso nadie te escribe sin tu permiso. Recibe tu invitación, vincúlate con un QR en un minuto y disfruta 30 días de Sigilo PRO gratis para probar la protección cuántica, el PIN de coacción y la firma de documentos.</p>
+    <p>En Sigilo nadie entra sin invitación, y por eso nadie te escribe sin tu permiso. Recibe tu invitación, vincúlate con un QR en un minuto y disfruta 30 días de Sigilo PRO gratis para probar la protección cuántica, los chats con candado, los mensajes programados, la copia automática, el PIN de coacción y la firma de documentos.</p>
+    <p><a href="manual.html" style="color:#fff;font-weight:700">📖 Cómo usar cada función: el manual del usuario ›</a></p>
   </section>
 
-  <footer>Sigilo · Para el mundo, un sobre cerrado. Para tu contacto, tu mensaje.</footer>
+  <footer>Sigilo · Para el mundo, un sobre cerrado. Para tu contacto, tu mensaje. · <a href="manual.html">Manual del usuario</a></footer>
 </div>
 </body>
 </html>
