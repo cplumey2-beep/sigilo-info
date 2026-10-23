@@ -235,7 +235,7 @@ mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding:
       <ul>
         <li><b>○</b> pendiente de salir · <b>✓</b> enviado · <b>✓✓</b> entregado · <b>✓✓</b> en color: leído.</li>
         <li><b>🕐</b> programado: sale a su hora. <b>⏱</b> se borra solo. <b>editado</b>: se corrigió después de enviarlo.</li>
-        <li>Las etiquetas <b>⚠️ Urgente</b>, <b>⭐ Prioridad</b>, <b>🕊️ Sin prisa</b> y <b>↪ Reenviado</b> van arriba del mensaje.</li>
+        <li>Las etiquetas <b>⚠️ Urgente</b>, <b>⭐ Prioridad</b>, <b>🕊️ Sin prisa</b>, <b>🤫 Confidencial</b> y <b>↪ Reenviado</b> van arriba del mensaje. Un confidencial sale tapado: tócalo para verlo.</li>
       </ul>
     </details>
   </section>
@@ -318,7 +318,7 @@ mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding:
     <details>
       <summary>↩️ Responder, reaccionar, editar, reenviar y eliminar</summary>
       <p>Mantén el dedo sobre un mensaje: <b>Responder</b>, reaccionar con un emoji (hay 100 a mano y ＋ para más; tocar otra vez la tuya la quita), <b>Copiar</b>, <b>Reenviar</b>, <b>Editar</b> (en los primeros minutos), <b>Eliminar para mí</b> o <b>Eliminar para todos</b>.</p>
-      <p class="tip">Al <b>editar</b> también puedes ponerle, cambiarle o quitarle el sello (⚠️ urgente, ⭐ prioridad, 🕊️ sin prisa) con los mismos botones del ＋.</p>
+      <p class="tip">Al <b>editar</b> también puedes ponerle, cambiarle o quitarle el sello (⚠️ urgente, ⭐ prioridad, 🕊️ sin prisa) con los mismos botones del ＋. Un 🤫 confidencial sigue confidencial.</p>
     </details>
     <details>
       <summary>1️⃣ Mensajes de una sola lectura</summary>
@@ -343,6 +343,19 @@ mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding:
         <li><b>⭐ Prioridad</b> (amarillo): destaca el mensaje.</li>
         <li><b>🕊️ Sin prisa</b>: llega sin hacer sonar el teléfono de tu contacto.</li>
       </ul>
+    </details>
+    <details data-k="confidencial confidential secreto tapado oculto mask hidden">
+      <summary>🤫 Confidencial <span class="pro">PRO</span></summary>
+      <span class="where">＋ → 🤫 Confidencial (para un mensaje) · o en el chat: Pantalla privada en este chat → Siempre, para los dos</span>
+      <p>Para lo que nadie más debe ver, ni siquiera de reojo al lado de tu contacto:</p>
+      <ul>
+        <li>Llega <b>tapado con puntos</b> en el teléfono de tu contacto, aunque él no tenga la pantalla privada, con la etiqueta <b>«🤫 Confidencial»</b>. Las fotos, borrosas.</li>
+        <li>En su lista de chats dice <b>«🤫 Mensaje confidencial»</b>, nunca el texto.</li>
+        <li>Para leerlo, <b>lo toca</b> y se destapa unos segundos; tocarlo otra vez lo tapa al instante.</li>
+        <li>Un confidencial <b>no se puede reenviar</b>, y quien lo recibe tampoco puede copiarlo.</li>
+        <li>Sale siempre con la <b>máxima protección (7 capas, con protección cuántica)</b>: si ese chat aún no la tiene lista, el mensaje espera unos segundos y sale solo.</li>
+      </ul>
+      <p class="tip">Lo envía quien tiene PRO; quien lo recibe no necesita PRO. Si su app todavía no lo entiende, Sigilo te lo dice antes de enviarlo.</p>
     </details>
   </section>
 
@@ -399,7 +412,7 @@ mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding:
       <span class="where">Dentro del chat secreto: ⋮ → Opciones del chat secreto (o mantén el dedo sobre su tarjeta)</span>
       <ul>
         <li><b>⏱ Mensajes temporales:</b> cada cuánto se borran (para los dos).</li>
-        <li><b>👁️ Pantalla privada en este chat</b> <span class="pro">PRO</span>: «Como en Ajustes», «Siempre» o «Nunca».</li>
+        <li><b>👁️ Pantalla privada en este chat</b> <span class="pro">PRO</span>: «Como en Ajustes», «Siempre», «Siempre, para los dos» (todo lo que envíes llega 🤫 confidencial) o «Nunca».</li>
         <li><b>Eliminar chat secreto</b>: se borra en los dos teléfonos.</li>
       </ul>
       <p class="tip">Si su chat normal tiene candado, sus chats secretos también quedan dentro de la carpeta con candado.</p>
@@ -573,7 +586,7 @@ mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding:
     <details>
       <summary>👁️ Pantalla privada <span class="pro">PRO</span></summary>
       <p>Que quien mire de lado no lea: <b>Ocultar lo que escribo</b> (puntos en vez de letras) y <b>Ocultar los mensajes en pantalla</b>. El ojito 🙈 junto a la caja de mensaje los muestra y los vuelve a ocultar.</p>
-      <p class="tip"><b>Solo en un chat:</b> mantén el dedo sobre el chat → <b>Pantalla privada en este chat</b>: «Como en Ajustes», «Siempre» (ese chat se tapa aunque los demás no) o «Nunca» (ese chat no se tapa aunque los demás sí). En un chat secreto, en su ⋮ → Opciones del chat secreto.</p>
+      <p class="tip"><b>Solo en un chat:</b> mantén el dedo sobre el chat → <b>Pantalla privada en este chat</b>: «Como en Ajustes», «Siempre» (ese chat se tapa aunque los demás no), <b>«Siempre, para los dos»</b> (además, todo lo que envíes ahí le llega 🤫 confidencial a tu contacto) o «Nunca» (ese chat no se tapa aunque los demás sí). En un chat secreto, en su ⋮ → Opciones del chat secreto.</p>
     </details>
     <details>
       <summary>🔐 PIN de coacción <span class="pro">PRO</span></summary>
@@ -701,6 +714,7 @@ mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding:
           <tr><th scope="row">PIN de la app, modo discreto, estado invisible, «Leído» apagable</th><td class="y">✓</td><td class="us y">✓</td></tr>
           <tr><th scope="row">Solicitudes para vincularse y bloquear sin que se entere</th><td class="y">✓</td><td class="us y">✓</td></tr>
           <tr><th scope="row">Pantalla privada (ocultar lo que escribes y lees), en toda la app o solo en los chats que escojas</th><td class="n">—</td><td class="us y">✓</td></tr>
+          <tr><th scope="row">🤫 Mensajes confidenciales: llegan tapados también a tu contacto, con 7 capas</th><td class="n">— <small>(sí los recibes)</small></td><td class="us y">✓</td></tr>
           <tr><th scope="row">PIN de coacción con pantalla falsa</th><td class="n">—</td><td class="us y">✓</td></tr>
           <tr><th scope="row">Firma de documentos y acuse certificado</th><td class="n">—</td><td class="us y">✓</td></tr>
           <tr><th scope="row">Borrado remoto de conversaciones</th><td class="n">—</td><td class="us y">✓</td></tr>
