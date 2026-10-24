@@ -144,6 +144,7 @@ mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding:
       <li><a href="#firma">Firma de documentos</a></li>
       <li><a href="#avisos">Notificaciones</a></li>
       <li><a href="#pro">Sigilo PRO y su prueba de 30 días</a></li>
+      <li><a href="#computadora">Sigilo en tu computadora</a></li>
       <li><a href="#informacion">La sección Información</a></li>
       <li><a href="#funciones">Funciones: sin PRO y con PRO</a></li>
       <li><a href="#faq">Preguntas frecuentes</a></li>
@@ -694,6 +695,12 @@ mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding:
       <p>Actívalas y toca <b>Enviar un aviso de prueba</b>. El aviso dice solo «Nuevo mensaje»: nunca el texto ni quién escribe. Ahí mismo enciendes o apagas el sonido con la app abierta.</p>
       <p class="tip">En iPhone, las notificaciones funcionan con Sigilo añadido a la pantalla de inicio.</p>
     </details>
+    <details data-k="numero icono insignia badge sin leer titulo pestaña">
+      <summary>🔢 El número de chats sin leer sobre el ícono</summary>
+      <span class="where">Ajustes → Notificaciones → Número de chats sin leer en el ícono</span>
+      <p>Sobre el ícono de Sigilo (y en el título de la pestaña del navegador, «(2) Sigilo») sale cuántos chats tienen algo sin leer, para que lo sepas sin abrir la app. Viene encendido y lo puedes apagar.</p>
+      <p class="tip">Con el <b>modo discreto</b> encendido no sale nunca, para que nadie que vea tu pantalla sepa que tienes mensajes. En iPhone necesita Sigilo en la pantalla de inicio y los avisos encendidos.</p>
+    </details>
   </section>
 
   <section id="pro" aria-labelledby="h-pro">
@@ -710,8 +717,66 @@ mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding:
     </details>
   </section>
 
-  <section id="informacion" aria-labelledby="h-informacion">
+  <section id="computadora" aria-labelledby="h-computadora">
     <p class="eyebrow">18</p>
+    <h2 id="h-computadora">Sigilo en tu computadora</h2>
+    <details data-k="computadora pc navegador chrome edge firefox safari mac windows instalar escritorio">
+      <summary>💻 Usarla en el navegador (y en la tableta)</summary>
+      <p>Abre <b>sigilo.cplumey2.workers.dev</b> en Chrome, Edge, Firefox o Safari. En una pantalla ancha (computadora o tableta acostada) la <b>lista de chats queda a la izquierda</b> y el chat que abres <b>a la derecha</b>, como en WhatsApp Web. Ajustes y Vincular también se abren a la derecha. Si achicas la ventana, vuelve a verse como en el teléfono.</p>
+    </details>
+    <details data-k="instalar app icono escritorio dock barra de tareas pwa">
+      <summary>📲 Instalarla como app</summary>
+      <span class="where">Ajustes → Instalar Sigilo</span>
+      <ul>
+        <li><b>Chrome y Edge (Windows, Mac, Android):</b> te lo ofrece al tocar «Instalar Sigilo». También está en el ícono de instalar de la barra de direcciones.</li>
+        <li><b>iPhone y iPad:</b> Compartir → «Añadir a pantalla de inicio».</li>
+        <li><b>Safari en Mac:</b> Archivo → «Añadir al Dock».</li>
+        <li><b>Firefox:</b> no instala apps en la computadora; úsala como pestaña fija o ábrela en Chrome o Edge para instalarla.</li>
+      </ul>
+      <p class="tip">Instalada, Sigilo abre en su propia ventana, con su ícono, y puede avisarte aunque la tengas cerrada.</p>
+    </details>
+    <details data-k="raton mouse clic derecho menu pasar el raton">
+      <summary>🖱️ Con el ratón</summary>
+      <ul>
+        <li>Al pasar el ratón por un mensaje o por un chat sale <b>⌄</b>: abre su menú (responder, reaccionar, copiar, fijar…).</li>
+        <li>El <b>clic derecho</b> hace lo mismo.</li>
+        <li>Para enviar fotos y archivos también puedes <b>pegarlos (Ctrl+V)</b> o <b>arrastrarlos</b> al chat (ver «Escribir y enviar»).</li>
+        <li><b>📷 Cámara</b> usa la cámara web de la computadora: ves la imagen en vivo y tocas «Tomar foto».</li>
+      </ul>
+    </details>
+    <details data-k="atajos teclado shortcuts esc ctrl enter alt flecha">
+      <summary>⌨️ Atajos de teclado</summary>
+      <ul>
+        <li><b>Enter</b> envía · <b>Mayús+Enter</b> baja de línea.</li>
+        <li><b>Esc</b> quita la respuesta o la corrección que estabas preparando; si no hay ninguna, cierra el chat (con algo escrito no lo cierra, para que no se pierda).</li>
+        <li><b>Ctrl+K</b> (⌘+K en Mac) busca un chat · <b>Ctrl+F</b> busca dentro del chat abierto.</li>
+        <li><b>Alt+↑ / Alt+↓</b> pasa al chat de arriba o de abajo en la lista.</li>
+        <li><b>↑</b> con la caja vacía corrige tu último mensaje (si aún se puede).</li>
+        <li>La tecla de <b>menú</b> o <b>Mayús+F10</b> sobre un chat abre sus opciones.</li>
+      </ul>
+    </details>
+    <details data-k="otra pestaña ventana usar aqui dos pestañas">
+      <summary>🪟 Una sola ventana a la vez</summary>
+      <p>Si abres Sigilo en otra pestaña o ventana del mismo navegador, la anterior se apaga y te ofrece <b>Usar aquí</b>. Así no suenan dos a la vez y siempre ves lo último.</p>
+    </details>
+    <details data-k="cuidado borrar datos navegacion privada incognito computadora compartida pin bloqueo">
+      <summary>🛡️ Cuidados en una computadora</summary>
+      <ul>
+        <li>Tu cuenta vive <b>en ese navegador</b>: si borras sus datos (historial, cookies y datos de sitios), se borra Sigilo. Haz tu <b>copia de seguridad</b>.</li>
+        <li>En una <b>ventana privada</b> (incógnito o InPrivate) todo se borra al cerrarla: usa una ventana normal.</li>
+        <li>Si otras personas usan esa computadora, pon un <b>PIN con bloqueo automático</b>.</li>
+        <li>La cuenta de la computadora es <b>distinta de la de tu teléfono</b>: por ahora, cada cuenta vive en un solo aparato.</li>
+      </ul>
+      <p class="tip">La primera vez que abres Sigilo en una computadora te lo recuerda, con botones para hacerlo en el momento.</p>
+    </details>
+    <details data-k="girar horizontal acostado telefono rotar">
+      <summary>📱↔️ El teléfono acostado</summary>
+      <p>Sigilo gira con tu teléfono: si te gusta escribir en horizontal, solo acuéstalo.</p>
+    </details>
+  </section>
+
+  <section id="informacion" aria-labelledby="h-informacion">
+    <p class="eyebrow">19</p>
     <h2 id="h-informacion">La sección Información</h2>
     <details>
       <summary>ℹ️ Qué hay en Información</summary>
@@ -727,7 +792,7 @@ mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding:
   </section>
 
   <section id="funciones" aria-labelledby="h-funciones">
-    <p class="eyebrow">19</p>
+    <p class="eyebrow">20</p>
     <h2 id="h-funciones">Funciones: sin PRO y con PRO</h2>
     <div class="table-box">
       <table>
@@ -740,6 +805,7 @@ mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding:
           <tr><th scope="row">Sellos: urgente, prioridad, sin prisa</th><td class="y">✓</td><td class="us y">✓</td></tr>
           <tr><th scope="row">Encuestas, tarjetas de contacto, reacciones, editar y eliminar para todos</th><td class="y">✓</td><td class="us y">✓</td></tr>
           <tr><th scope="row">Favoritos, listas, archivados y orden de los fijados</th><td class="y">✓</td><td class="us y">✓</td></tr>
+          <tr><th scope="row">En la computadora: lista y chat lado a lado, atajos de teclado, pegar y arrastrar archivos</th><td class="y">✓</td><td class="us y">✓</td></tr>
           <tr><th scope="row">Enviar sugerencias cifradas al equipo de Sigilo</th><td class="y">✓</td><td class="us y">✓</td></tr>
           <tr><th scope="row">Chats fijados</th><td>3</td><td class="us y">10</td></tr>
           <tr><th scope="row">Chats con candado (huella, cara o PIN aparte)</th><td class="n">—</td><td class="us y">✓</td></tr>
@@ -759,7 +825,7 @@ mark { background: var(--wax-soft); color: inherit; border-radius: 3px; padding:
   </section>
 
   <section id="faq" aria-labelledby="h-faq">
-    <p class="eyebrow">20</p>
+    <p class="eyebrow">21</p>
     <h2 id="h-faq">Preguntas frecuentes</h2>
     <details>
       <summary>¿Por qué no me pide número de teléfono ni correo?</summary>
